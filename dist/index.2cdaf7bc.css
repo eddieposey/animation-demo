@@ -1,0 +1,72 @@
+.army-toggle {
+  cursor: pointer;
+  color: #f1e4c7;
+  letter-spacing: 0;
+  align-items: center;
+  font-family: "G.I.", systems-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 27px;
+  display: flex;
+}
+
+.army-toggle input[type="checkbox"] {
+  appearance: none;
+  cursor: pointer;
+  background-color: var(--form-background);
+  font: inherit;
+  width: 56px;
+  height: 30px;
+  place-content: left;
+  background: #3a3a3a;
+  border-radius: 60px;
+  margin: 0 9px;
+  padding: 0 4px;
+  font-size: 20px;
+  display: grid;
+}
+
+.army-toggle input[type="checkbox"]:before {
+  content: "";
+  height: 24px;
+  transform-origin: 0 100%;
+  width: 24px;
+  border-radius: 100px;
+  align-self: center;
+  transition: transform .12s ease-in-out;
+  box-shadow: inset 1em 1em #f1e4c7;
+}
+
+.army-toggle input[type="checkbox"]:checked:before {
+  transform: translate(100%);
+}
+
+.army-toggle-text-left:has( + input[type="checkbox"]) {
+  opacity: 1;
+}
+
+.army-toggle-text-left:has( + input[type="checkbox"]:checked) {
+  opacity: .2;
+}
+
+.army-toggle input[type="checkbox"] + .army-toggle-text-right {
+  opacity: .2;
+}
+
+.army-toggle input[type="checkbox"]:checked + .army-toggle-text-right {
+  opacity: 1;
+}
+
+.army-toggle-light {
+  color: #221f20;
+}
+
+.army-toggle-light input[type="checkbox"] {
+  background-color: #f1e4c7;
+}
+
+.army-toggle-light input[type="checkbox"]:before {
+  box-shadow: inset 1em 1em #221f20;
+}
+
+/*# sourceMappingURL=index.2cdaf7bc.css.map */
