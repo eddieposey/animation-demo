@@ -23,7 +23,7 @@ h1 {
 .climb-animation {
   height: 100vh;
   width: 100%;
-  background: salmon;
+  background: yellow;
   overflow: hidden;
   position: sticky;
   top: 0;
@@ -47,7 +47,6 @@ h1 {
 .climb-text {
   height: 200vh;
   width: 50%;
-  background: blue;
   position: absolute;
   left: 0;
   z-index: 1;
@@ -56,7 +55,8 @@ h1 {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  padding: 2rem;
+  padding: 40px 0;
+  box-sizing: border-box;
 }
 
 .text-container {
@@ -68,6 +68,7 @@ h1 {
 .text {
   display: inline-block;
   padding: 5px 0;
+  color: yellow
 }
 
 .cursor {

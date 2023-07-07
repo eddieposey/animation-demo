@@ -61,7 +61,8 @@ const imageScale = () => {
     right: 40,
     top: 40,
     bottom: 40,
-    width: '41.5%',
+    left: '50%',
+    width: 'initial',
     duration: 1.25,
   })
 }
@@ -71,7 +72,7 @@ const scrollText = () => {
   copyTimeline.to(el, { top: 0, opacity: 1, duration: 2, delay: 0.2 })
   copyTimeline.to(el, { top: 'initial', bottom: 0, duration: 3, delay: 0.2 })
 }
-const wholeTimeline = () => {
+const animationTimeline = () => {
   setScrollTextPosition()
   cursorAnimation('first-text', 'first-cursor', 'first-container', 0.65)
   cursorAnimation('second-text', 'second-cursor', 'second-container', 1)
@@ -82,4 +83,4 @@ const wholeTimeline = () => {
   return copyTimeline
 }
 
-scrollPin('climb-animation', wholeTimeline())
+scrollPin('climb-animation', animationTimeline())
