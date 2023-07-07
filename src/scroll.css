@@ -1,5 +1,6 @@
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 h1 {
@@ -10,37 +11,61 @@ h1 {
 .box {
   width: 100%;
   height: 100vh;
+  background: lightgrey;
 }
 
-.image-container {
-  height: 100vh;
+.climb-animation-container {
+  height: 1200vh;
   width: 100%;
-  background: salmon;
-  overflow-x: hidden;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: center;
   position: relative;
 }
 
-.test {
+.climb-animation {
+  height: 100vh;
+  width: 100%;
+  background: salmon;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+}
+
+.climb-image {
+  align-items: flex-start;
+  background-image: url('/img/army.webp');
+  background-size: cover;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding-left: 2rem;
+  z-index: 2;
+}
+
+.climb-text {
   height: 200vh;
   width: 50%;
   background: blue;
   position: absolute;
   left: 0;
+  z-index: 1;
+  min-height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
 }
 
 .text-container {
   position: relative;
-  /* background: blue; */
   overflow: hidden;
   width: 100%;
 }
 
 .text {
-  /* background: salmon; */
   display: inline-block;
   padding: 5px 0;
 }
