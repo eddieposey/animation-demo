@@ -1,0 +1,30 @@
+/* stylelint-disable */
+$breakpoints: (
+	sm: 320px,
+	md: 768px,
+	lg: 1024px,
+	xl: 1440px,
+	xxl: 2000px,
+);
+
+@mixin BreakPoint($breakpoint) {
+	@if map-has-key($breakpoints, $breakpoint) {
+		@media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+			@content;
+		}
+	} @else if is-px-em($breakpoint) {
+		@media (min-width: $breakpoint) {
+			@content;
+		}
+	} @else {
+		@warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`."+"Please make sure it is defined in `$breakpoints` map.";
+	}
+}
+
+@mixin isSafari() {
+	@media not all and (min-resolution: 0.001dpcm) {
+		@supports (-webkit-appearance: none) {
+			@content;
+		}
+	}
+}

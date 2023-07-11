@@ -4,24 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./styles/reset.scss" />
     <title>Document</title>
   </head>
   <body>
-    <!-- <toggle-button id="language-toggle"></toggle-button>
+    <div class="box">
+      <h1>
+        <span>e</span>
+        <span>x</span>
+        <span>a</span>
+        <span>m</span>
+        <span>p</span>
+        <span>l</span>
+        <span>e</span>
+        <div class="test-cursor"></div>
+      </h1>
+      <h1>
+        <span>e</span>
+        <span>x</span>
+        <span>a</span>
+        <span>m</span>
+        <span>p</span>
+        <span>l</span>
+        <span>e</span>
+        <div class="test-cursor"></div>
+      </h1>
+    </div>
 
-    <br>
-
-    <toggle-button id="language-toggle-2" light="true"></toggle-button>
-
-    <script>
-      document.querySelector('#language-toggle')?.addEventListener('selected-language', (e) => {
-        console.log(e.detail.name) // the state of language toggle
-      })
-    </script> -->
-
-    <div class="box"></div>
 
     <div id="climb-animation-container" class="climb-animation-container">
       <div id="climb-animation" class="climb-animation">
@@ -43,18 +52,18 @@
         <div id="climb-image" class="climb-image">
           <div id="caption-container" class="caption-container">
             <div id="first-container" class="text-container">
-              <h1 id="first-text" class="text">hello world</h1>
+              <h1 id="first-text" class="text">be ambitious.</h1>
               <div id="first-cursor" class="cursor"></div>
             </div>
 
             <div id="second-container" class="text-container">
-              <h1 id="second-text" class="text">hello world some text</h1>
+              <h1 id="second-text" class="text">be curious.</h1>
               <div id="second-cursor" class="cursor"></div>
             </div>
 
             <div id="third-container" class="text-container">
               <h1 id="third-text" class="text">
-                hello world with a very long set of text
+                be inspired.
               </h1>
               <div id="third-cursor" class="cursor"></div>
             </div>
@@ -65,7 +74,6 @@
 
     <div class="box"></div>
 
-    <script src="index.js"></script>
-    <script type="module" src="scroll.js"></script>
+    <script type="module" src="index.js"></script>
   </body>
 </html>

@@ -1,8 +1,19 @@
 import gsap from 'gsap'
-import { scrollPin } from './scroll-pin'
-import './scroll.css'
+import { scrollPin } from '../../utils/scroll-pin'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
+import debounce from '../../utils/debounce.js'
+import './chapters.scss'
 
-const copyTimeline = gsap.timeline({ paused: true, ease: 'power1.inOut' })
+gsap.registerPlugin(ScrollTrigger);
+
+const copyTimeline = gsap.timeline({
+  paused: true,
+  ease: 'power1.inOut' ,
+  scrollTrigger: {
+    scrub: true,
+    invalidateOnRefresh: true,
+  }
+})
 
 const setScrollTextPosition = () => {
   const el = document.getElementById('climb-text')
@@ -10,27 +21,39 @@ const setScrollTextPosition = () => {
   el.style.opacity = 0
 }
 
-const cursorAnimation = (
-  textElement,
-  cursorElement,
-  textContainerElement,
-  duration
-) => {
-  // get the text width
-  const textContainer = document.getElementById(textElement)
-  const textContainerWidth = textContainer.offsetWidth + 1
-  textContainer.style.width = `${textContainerWidth}px`
+const cursorAnimation = (textElement, cursorElement, textContainerElement, duration) => {
 
-  // get the cursor width
-  const cursor = document.getElementById(cursorElement)
-  const cursorWidth = cursor.offsetWidth
+  let textContainer;
+  let textContainerWidth;
+  let cursor;
+  let cursorWidth;
+  let helloContainer;
+  let helloContainerWidth;
+  let endOfAnimationWidth;
 
-  // get the text container width
-  const helloContainer = document.getElementById(textContainerElement)
-  const helloContainerWidth = cursorWidth
+  const setContainerDimensions = () => {
+    // get the text width
+    textContainer = document.getElementById(textElement)
+    textContainerWidth = textContainer.offsetWidth + 1
+    textContainer.style.width = `${textContainerWidth}px`
 
-  // width of animation end
-  const endOfAnimationWidth = textContainerWidth + cursorWidth + 5
+    // get the cursor width
+    cursor = document.getElementById(cursorElement)
+    cursorWidth = cursor.offsetWidth
+
+    // get the text container width
+    helloContainer = document.getElementById(textContainerElement)
+    helloContainerWidth = cursorWidth
+
+    // width of animation end
+    endOfAnimationWidth = textContainerWidth + cursorWidth + 5
+  }
+
+  setContainerDimensions()
+
+  window.addEventListener('resize', debounce(() => {
+    ScrollTrigger.addEventListener("refresh", setContainerDimensions);
+  }))
 
   // fade cursor in
   copyTimeline.fromTo(
@@ -57,14 +80,23 @@ const captionFade = () => {
 
 const imageScale = () => {
   const el = document.getElementById('climb-image')
-  copyTimeline.to(el, {
+  copyTimeline.fromTo(el,
+  {
+    right: 0,
+    top: 0,
+    bottom: 0,
+    left: 0,
+    width: '100%',
+  },
+  {
     right: 40,
     top: 40,
     bottom: 40,
     left: '50%',
     width: 'initial',
     duration: 1.25,
-  })
+  }
+  )
 }
 
 const scrollText = () => {
@@ -72,6 +104,7 @@ const scrollText = () => {
   copyTimeline.to(el, { top: 0, opacity: 1, duration: 2, delay: 0.2 })
   copyTimeline.to(el, { top: 'initial', bottom: 0, duration: 3, delay: 0.2 })
 }
+
 const animationTimeline = () => {
   setScrollTextPosition()
   cursorAnimation('first-text', 'first-cursor', 'first-container', 0.65)

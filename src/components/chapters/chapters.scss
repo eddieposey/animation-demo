@@ -1,17 +1,40 @@
+@import '../../styles/breakpoints.scss';
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 h1 {
-  font-size: 64px;
-  font-weight: 500;
+  font-size: 45px;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 
 .box {
   width: 100%;
   height: 100vh;
   background: lightgrey;
+}
+
+.box {
+  h1 {
+    align-items: center;
+    display: flex;
+    height: 80px;
+    margin-bottom: 20px;
+  }
+
+  h1 span {
+    // margin: 0 -9px;
+  }
+}
+
+.test-cursor {
+  height: 100%;
+  aspect-ratio: 1;
+  background: blue;
+  display: inline-block;
 }
 
 .climb-animation-container {
@@ -23,7 +46,7 @@ h1 {
 .climb-animation {
   height: 100vh;
   width: 100%;
-  background: yellow;
+  background: #FFCC01;
   overflow: hidden;
   position: sticky;
   top: 0;
@@ -68,7 +91,7 @@ h1 {
 .text {
   display: inline-block;
   padding: 5px 0;
-  color: yellow
+  color: #FFCC01
 }
 
 .cursor {
@@ -78,4 +101,10 @@ h1 {
   background: white;
   right: 0;
   top: 0;
+}
+
+@include BreakPoint(lg) {
+  h1 {
+    font-size: 84px;
+  }
 }
