@@ -2,75 +2,51 @@ import gsap from 'gsap'
 import { scrollPin } from '../../utils/scroll-pin'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 import debounce from '../../utils/debounce.js'
+import * as DOMPurify from 'dompurify';
 import './chapters.scss'
 
 gsap.registerPlugin(ScrollTrigger);
 
 const copyTimeline = gsap.timeline({
   paused: true,
-  ease: 'power1.inOut' ,
-  scrollTrigger: {
-    scrub: true,
-    invalidateOnRefresh: true,
-  }
+  ease: 'power1.inOut',
 })
 
-const setScrollTextPosition = () => {
+const setScrollRailPosition = () => {
   const el = document.getElementById('climb-text')
   el.style.top = `350px`
   el.style.opacity = 0
 }
 
-const cursorAnimation = (textElement, cursorElement, textContainerElement, duration) => {
+const createCursor = (elementID) => {
+  const textElement = document.querySelector(elementID);
+  const cursorDiv = document.createElement('div');
 
-  let textContainer;
-  let textContainerWidth;
-  let cursor;
-  let cursorWidth;
-  let helloContainer;
-  let helloContainerWidth;
-  let endOfAnimationWidth;
+  cursorDiv.className = 'chapters-cursor';
+  textElement.insertAdjacentElement('afterend', cursorDiv);
+  return cursorDiv
+}
 
-  const setContainerDimensions = () => {
-    // get the text width
-    textContainer = document.getElementById(textElement)
-    textContainerWidth = textContainer.offsetWidth + 1
-    textContainer.style.width = `${textContainerWidth}px`
+const cursorAnimation = (textElementID) => {
+  const textElement = document.querySelector(textElementID)
+  const text = textElement.innerHTML.split('').map(letter => `<span>${letter === ' ' ? '&nbsp' : letter}</span>`).join('')
 
-    // get the cursor width
-    cursor = document.getElementById(cursorElement)
-    cursorWidth = cursor.offsetWidth
+  const sanitizedHtmlContent = DOMPurify.sanitize(text);
+  textElement.innerHTML = sanitizedHtmlContent;
 
-    // get the text container width
-    helloContainer = document.getElementById(textContainerElement)
-    helloContainerWidth = cursorWidth
+  const letters = document.querySelectorAll(`${textElementID} span`)
 
-    // width of animation end
-    endOfAnimationWidth = textContainerWidth + cursorWidth + 5
-  }
+  const cursor = createCursor(textElementID)
 
-  setContainerDimensions()
+  const hideLetterOnLoad = { display: 'none', duration: 0.2 }
+  const initialDelay = { display: 'inline', duration: 0.2, delay: 1 }
+  const noDelay = { display: 'inline', duration: 0.2 }
 
-  window.addEventListener('resize', debounce(() => {
-    ScrollTrigger.addEventListener("refresh", setContainerDimensions);
-  }))
+  copyTimeline.fromTo(cursor, { opacity: 0 }, {opacity: 1})
 
-  // fade cursor in
-  copyTimeline.fromTo(
-    helloContainer,
-    { opacity: 0, duration: 0.75 },
-    { opacity: 1, duration: 0.75 }
-  )
+  letters.forEach((el, index) => copyTimeline.fromTo(el, hideLetterOnLoad, index === 0 ? initialDelay : noDelay))
 
-  // slide cursor from left to right
-  copyTimeline.fromTo(
-    helloContainer,
-    { width: helloContainerWidth, duration },
-    { width: endOfAnimationWidth, duration }
-  )
-
-  // fade cursor out
-  copyTimeline.to(cursor, { opacity: 0, duration: 0.75 })
+  copyTimeline.to(cursor, { opacity: 0 })
 }
 
 const captionFade = () => {
@@ -106,10 +82,10 @@ const scrollText = () => {
 }
 
 const animationTimeline = () => {
-  setScrollTextPosition()
-  cursorAnimation('first-text', 'first-cursor', 'first-container', 0.65)
-  cursorAnimation('second-text', 'second-cursor', 'second-container', 1)
-  cursorAnimation('third-text', 'third-cursor', 'third-container', 1.2)
+  setScrollRailPosition()
+  cursorAnimation('#chapters-text-1')
+  cursorAnimation('#chapters-text-2')
+  cursorAnimation('#chapters-text-3')
   captionFade()
   imageScale()
   scrollText()

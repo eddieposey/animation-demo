@@ -5,9 +5,10 @@ body {
     Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
-h1 {
+.chapters-text {
   font-size: 45px;
   font-weight: 400;
+  color: #FFCC01;
   text-transform: uppercase;
 }
 
@@ -16,6 +17,41 @@ h1 {
   height: 100vh;
   background: lightgrey;
 }
+
+.chapters-text-container {
+  align-items: center;
+  display: flex;
+  height: 32px;
+  margin-bottom: 20px;
+}
+
+.chapters-text {
+  font-size: 32px;
+}
+
+.chapters-cursor {
+  height: 100%;
+  aspect-ratio: 1;
+  background: blue;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .box {
   h1 {
