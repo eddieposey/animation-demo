@@ -13,7 +13,7 @@ const copyTimeline = gsap.timeline({
 })
 
 const setScrollRailPosition = () => {
-  const el = document.getElementById('climb-text')
+  const el = document.getElementById('chapters-animation-text')
   el.style.top = `350px`
   el.style.opacity = 0
 }
@@ -76,7 +76,7 @@ const imageScale = () => {
 }
 
 const scrollText = () => {
-  const el = document.getElementById('climb-text')
+  const el = document.getElementById('chapters-animation-text')
   copyTimeline.to(el, { top: 0, opacity: 1, duration: 2, delay: 0.2 })
   copyTimeline.to(el, { top: 'initial', bottom: 0, duration: 3, delay: 0.2 })
 }
@@ -92,4 +92,4 @@ const animationTimeline = () => {
   return copyTimeline
 }
 
-scrollPin('climb-animation', animationTimeline())
+scrollPin('chapters-animation', animationTimeline())
