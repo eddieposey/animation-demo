@@ -1,95 +1,113 @@
 import gsap from 'gsap'
 import { scrollPin } from '../../utils/scroll-pin'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
-import debounce from '../../utils/debounce.js'
-import * as DOMPurify from 'dompurify';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js'
+import * as DOMPurify from 'dompurify'
 import './chapters.scss'
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
-const copyTimeline = gsap.timeline({
+const chaptersTimeline = gsap.timeline({
   paused: true,
   ease: 'power1.inOut',
 })
 
 const setScrollRailPosition = () => {
   const el = document.getElementById('chapters-animation-text')
-  el.style.top = `350px`
   el.style.opacity = 0
+
+  ScrollTrigger.matchMedia({
+		'(min-width: 1035px)': function () {
+      el.style.top = `350px`
+    },
+		'(max-width: 1035px)': function () {
+      el.style.top = `450px`
+      el.style.zIndex = `3`
+    },
+	})
 }
 
 const createCursor = (elementID) => {
-  const textElement = document.querySelector(elementID);
-  const cursorDiv = document.createElement('div');
-
-  cursorDiv.className = 'chapters-cursor';
-  textElement.insertAdjacentElement('afterend', cursorDiv);
+  const textElement = document.querySelector(elementID)
+  const cursorDiv = document.createElement('div')
+  cursorDiv.className = 'chapters-cursor'
+  textElement.insertAdjacentElement('afterend', cursorDiv)
   return cursorDiv
 }
 
 const cursorAnimation = (textElementID) => {
   const textElement = document.querySelector(textElementID)
   const text = textElement.innerHTML.split('').map(letter => `<span>${letter === ' ' ? '&nbsp' : letter}</span>`).join('')
-
-  const sanitizedHtmlContent = DOMPurify.sanitize(text);
-  textElement.innerHTML = sanitizedHtmlContent;
-
+  const sanitizedHtmlContent = DOMPurify.sanitize(text)
+  textElement.innerHTML = sanitizedHtmlContent
   const letters = document.querySelectorAll(`${textElementID} span`)
-
   const cursor = createCursor(textElementID)
-
   const hideLetterOnLoad = { display: 'none', duration: 0.2 }
   const initialDelay = { display: 'inline', duration: 0.2, delay: 1 }
   const noDelay = { display: 'inline', duration: 0.2 }
 
-  copyTimeline.fromTo(cursor, { opacity: 0 }, {opacity: 1})
+  // fade cursor in
+  chaptersTimeline.fromTo(cursor, { opacity: 0 }, {opacity: 1})
 
-  letters.forEach((el, index) => copyTimeline.fromTo(el, hideLetterOnLoad, index === 0 ? initialDelay : noDelay))
+  // make each letter visible
+  letters.forEach((el, index) => chaptersTimeline.fromTo(el, hideLetterOnLoad, index === 0 ? initialDelay : noDelay))
 
-  copyTimeline.to(cursor, { opacity: 0 })
+  // fade cursor out
+  chaptersTimeline.to(cursor, { opacity: 0 })
 }
 
 const captionFade = () => {
   const el = document.getElementById('caption-container')
-  copyTimeline.to(el, { opacity: 0, duration: 0.75, delay: 0.5 })
+  chaptersTimeline.to(el, { opacity: 0, duration: 0.75, delay: 0.5 })
 }
 
 const imageScale = () => {
-  const el = document.getElementById('climb-image')
-  copyTimeline.fromTo(el,
-  {
-    right: 0,
-    top: 0,
-    bottom: 0,
-    left: 0,
-    width: '100%',
-  },
-  {
-    right: 40,
-    top: 40,
-    bottom: 40,
-    left: '50%',
-    width: 'initial',
-    duration: 1.25,
-  }
-  )
+  const imageContainer = document.getElementById('climb-image')
+  const animationStage = document.getElementById('chapters-animation')
+  const initialImagePosition = { right: 0, top: 0, bottom: 0, left: 0, width: '100%' }
+
+	ScrollTrigger.matchMedia({
+		'(min-width: 1035px)': function () {
+      const finalImagePosition = { right: 40, top: 40, bottom: 40, left: '50%', width: 'initial', duration: 1.25 }
+      chaptersTimeline.fromTo(imageContainer, initialImagePosition, finalImagePosition)
+      console.log(1)
+    },
+		'(max-width: 1035px)': function () {
+      // const finalStagePosition = { height: '340px'}
+      const finalImagePosition = { height: '340px', right: 40, top: 40, bottom: 0, left: 40, width: 'initial', duration: 1.25, }
+
+      // chaptersTimeline.to(animationStage, finalStagePosition)
+      chaptersTimeline.fromTo(imageContainer, initialImagePosition, finalImagePosition, '<')
+    },
+	})
 }
 
 const scrollText = () => {
   const el = document.getElementById('chapters-animation-text')
-  copyTimeline.to(el, { top: 0, opacity: 1, duration: 2, delay: 0.2 })
-  copyTimeline.to(el, { top: 'initial', bottom: 0, duration: 3, delay: 0.2 })
+  const imageContainer = document.getElementById('climb-image')
+
+  ScrollTrigger.matchMedia({
+		'(min-width: 1035px)': function () {
+      chaptersTimeline.to(el, { top: 0, opacity: 1, duration: 2, delay: 0.2 })
+      chaptersTimeline.to(el, { top: 'initial', bottom: 0, duration: 3, delay: 0.2 })
+    },
+		'(max-width: 1035px)': function () {
+      chaptersTimeline.to(el, { top: '400px', opacity: 1, duration: 2, delay: 0.2 })
+      chaptersTimeline.to(el, { top: 'initial', bottom: 0, duration: 3, delay: 0.2 })
+    },
+	})
 }
 
-const animationTimeline = () => {
+const animationTimeline = (textElementsByID) => {
   setScrollRailPosition()
-  cursorAnimation('#chapters-text-1')
-  cursorAnimation('#chapters-text-2')
-  cursorAnimation('#chapters-text-3')
+  textElementsByID.forEach(element => cursorAnimation(element))
   captionFade()
   imageScale()
   scrollText()
-  return copyTimeline
+  return chaptersTimeline
 }
 
-scrollPin('chapters-animation', animationTimeline())
+const textElementsByID = ['#chapters-text-1', '#chapters-text-2', '#chapters-text-3']
+
+// animationTimeline(textElementsByID)
+
+scrollPin('chapters-animation', animationTimeline(textElementsByID))

@@ -64,22 +64,28 @@ body {
 }
 
 .chapters-animation-text {
-  height: 200vh;
-  width: 50%;
-  position: absolute;
-  left: 0;
-  z-index: 1;
-  min-height: 100%;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-direction: column;
-  padding: 40px 0;
+  background: blue;
   box-sizing: border-box;
+  left: 0;
+  min-height: 100%;
+  padding: 40px 0;
+  position: absolute;
+  width: 50%;
+  z-index: 1;
+}
+
+.chapters-item {
+  height: 500px;
+  background: beige;
 }
 
 @include BreakPoint(lg) {
-  h1 {
+  .chapters-text {
     font-size: 84px;
+  }
+
+  .chapters-text-container {
+    height: 62px;
   }
 }
