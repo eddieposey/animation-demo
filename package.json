@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "dompurify": "^3.0.5",
-    "gsap": "^3.12.2"
+    "gsap": "^3.12.2",
+    "sass": "^1.63.6"
   }
 }

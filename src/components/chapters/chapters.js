@@ -36,6 +36,12 @@ const createCursor = (elementID) => {
 
 const cursorAnimation = (textElementID) => {
   const textElement = document.querySelector(textElementID)
+
+  if(!textElement) {
+    console.error("can't find a text element with that id. either it is authored incorrectly or the component needs to be reworked based on authoring capabilities. please reach out to the dev team.")
+    return
+  }
+
   const text = textElement.innerHTML.split('').map(letter => `<span>${letter === ' ' ? '&nbsp' : letter}</span>`).join('')
   const sanitizedHtmlContent = DOMPurify.sanitize(text)
   textElement.innerHTML = sanitizedHtmlContent
@@ -95,9 +101,9 @@ const scrollText = () => {
 	})
 }
 
-const animateContainer = () => {
+const animateInnerContainer = () => {
   const animationInnerContainer = document.getElementById('chapters-animation-inner')
-  chaptersTimeline.to(animationInnerContainer, { top: 'initial', bottom: 0, duration: 5 })
+  chaptersTimeline.to(animationInnerContainer, { top: 'initial', bottom: 0, duration: 8 })
 }
 
 const animationTimeline = (textElementsByID) => {
@@ -108,7 +114,7 @@ const animationTimeline = (textElementsByID) => {
   scrollText()
   ScrollTrigger.matchMedia({
 		'(max-width: 1035px)': function () {
-      animateContainer()
+      animateInnerContainer()
     },
 	})
 

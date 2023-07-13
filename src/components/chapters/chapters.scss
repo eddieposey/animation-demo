@@ -91,26 +91,28 @@ body {
   height: 500px;
 }
 
-@media (min-width: 1035px) {
-  .chapters-cursor {
-    background: blue !important;
-  }
-  
+@include BreakPoint(lg) {
   .chapters-text {
     font-size: 84px;
   }
-  
+
   .chapters-text-container {
     height: 62px;
   }
-  
+
+  .chapters-animation-inner {
+    position: relative;
+    height: 100%;
+  }
+
   .chapters-image {
     position: absolute;
+    height: initial;
+    background-position: initial;
   }
-  
+
   .chapters-animation-text {
     position: absolute;
     width: 50%;
   }
-  
 }
