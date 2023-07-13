@@ -20,7 +20,7 @@ const setScrollRailPosition = () => {
       el.style.top = `350px`
     },
 		'(max-width: 1035px)': function () {
-      el.style.top = `450px`
+      el.style.top = `50px`
       el.style.zIndex = `3`
     },
 	})
@@ -61,8 +61,8 @@ const captionFade = () => {
 }
 
 const imageScale = () => {
-  const imageContainer = document.getElementById('climb-image')
-  const animationStage = document.getElementById('chapters-animation')
+  const imageContainer = document.getElementById('chapters-image')
+  const animationInnerContainer = document.getElementById('chapters-animation-inner')
   const initialImagePosition = { right: 0, top: 0, bottom: 0, left: 0, width: '100%' }
 
 	ScrollTrigger.matchMedia({
@@ -72,29 +72,32 @@ const imageScale = () => {
       console.log(1)
     },
 		'(max-width: 1035px)': function () {
-      // const finalStagePosition = { height: '340px'}
-      const finalImagePosition = { height: '340px', right: 40, top: 40, bottom: 0, left: 40, width: 'initial', duration: 1.25, }
-
-      // chaptersTimeline.to(animationStage, finalStagePosition)
+      const animationInnerPadding = { padding: '40px 40px 0 40px'}
+      const finalImagePosition = { height: '340px', duration: 1.25, }
+      chaptersTimeline.to(animationInnerContainer, animationInnerPadding)
       chaptersTimeline.fromTo(imageContainer, initialImagePosition, finalImagePosition, '<')
     },
 	})
 }
 
 const scrollText = () => {
-  const el = document.getElementById('chapters-animation-text')
-  const imageContainer = document.getElementById('climb-image')
+  const chaptersAnimatioinText = document.getElementById('chapters-animation-text')
 
   ScrollTrigger.matchMedia({
 		'(min-width: 1035px)': function () {
-      chaptersTimeline.to(el, { top: 0, opacity: 1, duration: 2, delay: 0.2 })
-      chaptersTimeline.to(el, { top: 'initial', bottom: 0, duration: 3, delay: 0.2 })
+      chaptersTimeline.to(chaptersAnimatioinText, { top: 0, opacity: 1, duration: 2, delay: 0.2 })
+      chaptersTimeline.to(chaptersAnimatioinText, { top: 'initial', bottom: 0, duration: 3, delay: 0.2 })
     },
 		'(max-width: 1035px)': function () {
-      chaptersTimeline.to(el, { top: '400px', opacity: 1, duration: 2, delay: 0.2 })
-      chaptersTimeline.to(el, { top: 'initial', bottom: 0, duration: 3, delay: 0.2 })
+      chaptersTimeline.to(chaptersAnimatioinText, { top: '0', opacity: 1, duration: 2 })
+      chaptersTimeline.to(chaptersAnimatioinText, { top: 'initial', bottom: 0, duration: 2 })
     },
 	})
+}
+
+const animateContainer = () => {
+  const animationInnerContainer = document.getElementById('chapters-animation-inner')
+  chaptersTimeline.to(animationInnerContainer, { top: 'initial', bottom: 0, duration: 5 })
 }
 
 const animationTimeline = (textElementsByID) => {
@@ -103,11 +106,15 @@ const animationTimeline = (textElementsByID) => {
   captionFade()
   imageScale()
   scrollText()
+  ScrollTrigger.matchMedia({
+		'(max-width: 1035px)': function () {
+      animateContainer()
+    },
+	})
+
   return chaptersTimeline
 }
 
 const textElementsByID = ['#chapters-text-1', '#chapters-text-2', '#chapters-text-3']
-
-// animationTimeline(textElementsByID)
 
 scrollPin('chapters-animation', animationTimeline(textElementsByID))
