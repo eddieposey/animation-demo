@@ -91,6 +91,21 @@ body {
   height: 500px;
 }
 
+@include isSafari {
+  .chapters-animation-container {
+    height: 1200lvh;
+  }
+
+  .chapters-animation {
+    height: 100lvh;
+  }
+
+  .chapters-image {
+    height: 100lvh;
+  }
+}
+
+
 @include BreakPoint(lg) {
   .chapters-text {
     font-size: 84px;
