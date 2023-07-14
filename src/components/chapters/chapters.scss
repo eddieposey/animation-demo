@@ -6,7 +6,7 @@ body {
 }
 
 .chapters-text {
-  font-size: 45px;
+  font-size: 13vw;
   font-weight: 400;
   color: #FFCC01;
   text-transform: uppercase;
@@ -21,7 +21,7 @@ body {
 .chapters-text-container {
   align-items: center;
   display: flex;
-  height: 32px;
+  height: 11vw;
   margin-bottom: 20px;
 }
 
@@ -67,7 +67,7 @@ body {
   flex-direction: column;
   height: 100vh;
   justify-content: center;
-  padding-left: 2rem;
+  padding-left: 18px;
   position: relative;
   top: 0;
   width: 100%;
@@ -105,14 +105,18 @@ body {
   }
 }
 
-
 @include BreakPoint(lg) {
   .chapters-text {
-    font-size: 84px;
+    font-size: 12vw;
   }
 
   .chapters-text-container {
-    height: 62px;
+    height: 10.5vw;
+    margin-bottom: 20px;
+  }
+
+  .chapters-image {
+    padding-left: 45px;
   }
 
   .chapters-animation-inner {
@@ -129,5 +133,16 @@ body {
   .chapters-animation-text {
     position: absolute;
     width: 50%;
+  }
+}
+
+@media screen and (min-width: 1599px) {
+  .chapters-text {
+    font-size: 9vw;
+  }
+
+  .chapters-text-container {
+    height: 7.5vw;
+    margin-bottom: 20px;
   }
 }
