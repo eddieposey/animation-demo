@@ -74,12 +74,12 @@ const imageScale = () => {
 
 	ScrollTrigger.matchMedia({
 		'(min-width: 1035px)': function () {
-      const finalImagePosition = { right: 40, top: 40, bottom: 40, left: '50%', width: 'initial', duration: 1.25 }
+      const finalImagePosition = { height: '50%', right: 40, top: 40, bottom: 40, left: '50%', width: 'initial', duration: 1.25 }
       chaptersTimeline.fromTo(imageContainer, initialImagePositionDesktop, finalImagePosition)
       console.log(1)
     },
 		'(max-width: 1035px)': function () {
-      const animationInnerPadding = { padding: '40px 40px 0 40px'}
+      const animationInnerPadding = { padding: '18px 18px 18px 18px'}
       const finalImagePosition = { height: '340px', duration: 1.25, }
       chaptersTimeline.to(animationInnerContainer, animationInnerPadding)
       chaptersTimeline.fromTo(imageContainer, initialImagePositionMobile, finalImagePosition, '<')

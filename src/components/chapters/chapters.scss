@@ -60,7 +60,7 @@ body {
   align-items: flex-start;
   background-image: url('/img/army.webp');
   background-size: cover;
-  background-position: center;
+  // background-position: center;
   bottom: 0;
   box-sizing: border-box;
   display: flex;
@@ -79,15 +79,47 @@ body {
   box-sizing: border-box;
   left: 0;
   min-height: 100%;
-  padding: 40px 0;
   position: relative;
   width: 100%;
+  padding-top: 27px;
   z-index: 1;
 }
 
+.chapters-header {
+  border-bottom: 1px solid black;
+}
+
 .chapters-item {
-  background: beige;
-  height: 500px;
+  padding: 45px 0;
+  border-bottom: 1px solid black;
+}
+
+.chapters-header-title {
+  font-size: 36px;
+  padding-bottom: 36px;
+}
+
+.chapters-summary {
+  font-size: 21px;
+  padding-bottom: 36px;
+}
+
+.chapters-item-icon {
+  height: 40px;
+  width: 40px;
+}
+
+.chapters-item-title {
+  padding-top: 18px;
+  font-size: 27px;
+}
+
+.chapters-item-copy {
+  padding-top: 18px;
+}
+
+.chapters-item-cta {
+  padding-top: 45px;
 }
 
 @include isSafari {
@@ -132,6 +164,7 @@ body {
   .chapters-animation-text {
     position: absolute;
     width: 50%;
+    padding: 45px;
   }
 }
 
