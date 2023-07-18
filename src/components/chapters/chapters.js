@@ -62,20 +62,22 @@ const cursorAnimation = (textElementID) => {
 }
 
 const captionFade = () => {
-  const el = document.getElementById('caption-container')
+  const el = document.getElementById('chapters-caption-container')
   chaptersTimeline.to(el, { opacity: 0, duration: 0.75, delay: 0.5 })
 }
 
 const imageScale = () => {
   const imageContainer = document.getElementById('chapters-image')
+  const imageOverlay = document.getElementById('chapters-image-overlay')
   const animationInnerContainer = document.getElementById('chapters-animation-inner')
   const initialImagePositionMobile = { height: '100vh', right: 0, top: 0, bottom: 0, left: 0, width: '100%' }
   const initialImagePositionDesktop = { right: 0, top: 0, bottom: 0, left: 0, width: '100%' }
 
 	ScrollTrigger.matchMedia({
 		'(min-width: 1035px)': function () {
-      const finalImagePosition = { height: '50%', right: 40, top: 40, bottom: 40, left: '50%', width: 'initial', duration: 1.25 }
-      chaptersTimeline.fromTo(imageContainer, initialImagePositionDesktop, finalImagePosition)
+      const finalImagePosition = { right: 40, top: 40, bottom: 40, left: '50%', width: 'initial', duration: 1.25 }
+      chaptersTimeline.fromTo(imageOverlay, { opacity: 1 }, { opacity: 0 })
+      chaptersTimeline.fromTo(imageContainer, initialImagePositionDesktop, finalImagePosition, '<')
       console.log(1)
     },
 		'(max-width: 1035px)': function () {

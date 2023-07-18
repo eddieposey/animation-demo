@@ -12,6 +12,22 @@ body {
   text-transform: uppercase;
 }
 
+.bg-image .chapters-text {
+  color: #FFCC01;
+}
+
+.bg-green .chapters-text {
+  color: #FFCC01;
+}
+
+.bg-tan .chapters-text {
+  color: #000;
+}
+
+.bg-field-02 .chapters-text {
+  color: #000;
+}
+
 .box {
   background: lightgrey;
   height: 100vh;
@@ -27,10 +43,25 @@ body {
 
 .chapters-cursor {
   aspect-ratio: 1;
-  background: #FFCC01;
   display: inline-block;
   height: 100%;
   margin-left: 2px;
+}
+
+.bg-image .chapters-cursor {
+    background: #FFCC01;
+}
+
+.bg-green .chapters-cursor {
+    background: #FFCC01;
+}
+
+.bg-tan .chapters-cursor {
+    background: #000;
+}
+
+.bg-field-02 .chapters-cursor {
+    background: #000;
 }
 
 .chapters-animation-container {
@@ -46,14 +77,58 @@ body {
   width: 100%;
 }
 
+.chapters-image-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bg-image .chapters-image-overlay {
+  background: none;
+}
+
+.bg-green .chapters-image-overlay {
+  background: #2F372F;
+}
+
+.bg-tan .chapters-image-overlay {
+  background: #F1E4C7;
+}
+
+.bg-field-02 .chapters-image-overlay {
+  background: #BFB8A6;
+}
+
+.chapters-caption-container {
+  position: relative;
+  z-index: 1;
+}
+
 .chapters-animation {
-  background: #FFCC01;
   box-sizing: border-box;
   height: 100vh;
   overflow: hidden;
   position: sticky;
   top: 0;
   width: 100%;
+}
+
+.bg-image .chapters-animation {
+  background: #FFCC01;
+}
+
+.bg-green .chapters-animation {
+  background: #2F372F;
+}
+
+.bg-tan .chapters-animation {
+  background: #F1E4C7;
+}
+
+.bg-field-02 .chapters-animation {
+  background: #BFB8A6;
 }
 
 .chapters-image {
@@ -85,13 +160,56 @@ body {
   z-index: 1;
 }
 
-.chapters-header {
-  border-bottom: 1px solid black;
+.bg-image .chapters-animation-text {
+  color:#000;
+}
+
+.bg-green .chapters-animation-text {
+  color:#F1E4C7;
+}
+
+.bg-tan .chapters-animation-text {
+  color:#000;
+}
+
+.bg-field-02 .chapters-animation-text {
+  color:#000;
+}
+
+.bg-image .chapters-animation-text path {
+  fill:#000;
+}
+
+.bg-green .chapters-animation-text path {
+  fill:#F1E4C7;
+}
+
+.bg-tan .chapters-animation-text path {
+  fill:#000;
+}
+
+.bg-field-02 .chapters-animation-text path {
+  fill:#000;
+}
+
+.bg-image .chapters-header {
+  border-bottom: 1px solid #000;
+}
+
+.bg-green .chapters-header {
+  border-bottom: 1px solid #F1E4C7;
+}
+
+.bg-tan .chapters-header {
+  border-bottom: 1px solid #000;
+}
+
+.bg-field-02 .chapters-header {
+  border-bottom: 1px solid #000;
 }
 
 .chapters-item {
   padding: 45px 0;
-  border-bottom: 1px solid black;
 }
 
 .chapters-header-title {
@@ -170,11 +288,11 @@ body {
 
 @media screen and (min-width: 1599px) {
   .chapters-text {
-    font-size: 9vw;
+    font-size: 8vw;
   }
 
   .chapters-text-container {
-    height: 7.5vw;
+    height: 6.5vw;
     margin-bottom: 20px;
   }
 
