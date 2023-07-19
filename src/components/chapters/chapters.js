@@ -110,16 +110,25 @@ const animateInnerContainer = () => {
 }
 
 const chaptersAnimation = (textElementsByID) => {
-  setScrollRailPosition()
-  textElementsByID.forEach(element => cursorAnimation(element))
-  captionFade()
-  imageScale()
-  scrollText()
-  ScrollTrigger.matchMedia({
-		'(max-width: 1035px)': function () {
-      animateInnerContainer()
-    },
-	})
+  const animationContainer = document.getElementById('chapters-animation-container')
+  const bgTan = animationContainer.classList.contains('bg-tan')
+  const bgGreen = animationContainer.classList.contains('bg-green')
+  const bgYellow = animationContainer.classList.contains('bg-yellow')
+  const containsBgClass = bgTan || bgGreen || bgYellow
+
+  if(containsBgClass) {
+    setScrollRailPosition()
+    textElementsByID.forEach(element => cursorAnimation(element))
+  }
+
+  if(!containsBgClass) {
+    setScrollRailPosition()
+    textElementsByID.forEach(element => cursorAnimation(element))
+    captionFade()
+    imageScale()
+    scrollText()
+    ScrollTrigger.matchMedia({ '(max-width: 1035px)': () => animateInnerContainer() })
+  }
 
   return chaptersTimeline
 }
