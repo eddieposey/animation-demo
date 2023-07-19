@@ -78,7 +78,6 @@ const imageScale = () => {
       const finalImagePosition = { right: 40, top: 40, bottom: 40, left: '50%', width: 'initial', duration: 1.25 }
       chaptersTimeline.fromTo(imageOverlay, { opacity: 1 }, { opacity: 0 })
       chaptersTimeline.fromTo(imageContainer, initialImagePositionDesktop, finalImagePosition, '<')
-      console.log(1)
     },
 		'(max-width: 1035px)': function () {
       const animationInnerPadding = { padding: '18px 18px 18px 18px'}
@@ -110,6 +109,10 @@ const animateInnerContainer = () => {
 }
 
 const chaptersAnimation = (textElementsByID) => {
+  if(!textElementsByID) {
+    console.error('each listed text item needs to have a unique id on its html element. please review the loop in the template to add a unique id.')
+  }
+
   const animationContainer = document.getElementById('chapters')
   const bgTan = animationContainer.classList.contains('bg-tan')
   const bgGreen = animationContainer.classList.contains('bg-green')
