@@ -63,6 +63,12 @@ body {
   width: 100%;
 }
 
+.bg-tan .chapters-animation-container,
+.bg-field-02 .chapters-animation-container,
+.bg-green .chapters-animation-container {
+  height: 800vh;
+}
+
 .chapters-animation-inner {
   box-sizing: border-box;
   position: absolute;
@@ -222,6 +228,27 @@ body {
 
 .chapters-item-cta {
   padding-top: 45px;
+}
+
+.chapters-sticky-container {
+  display: none;
+  height: 100vh;
+  width: 100%;
+}
+
+.bg-tan .chapters-sticky-container {
+  background: #F1E4C7;
+  display: block;
+}
+
+.bg-field-02 .chapters-sticky-container {
+  background: #BFB8A6;
+  display: block;
+}
+
+.bg-green .chapters-sticky-container {
+  background: #2F372F;
+  display: block;
 }
 
 @include isSafari {

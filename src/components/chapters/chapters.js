@@ -110,11 +110,11 @@ const animateInnerContainer = () => {
 }
 
 const chaptersAnimation = (textElementsByID) => {
-  const animationContainer = document.getElementById('chapters-animation-container')
+  const animationContainer = document.getElementById('chapters')
   const bgTan = animationContainer.classList.contains('bg-tan')
   const bgGreen = animationContainer.classList.contains('bg-green')
-  const bgYellow = animationContainer.classList.contains('bg-yellow')
-  const containsBgClass = bgTan || bgGreen || bgYellow
+  const bgField = animationContainer.classList.contains('bg-field-02')
+  const containsBgClass = bgTan || bgGreen || bgField
 
   if(containsBgClass) {
     setScrollRailPosition()
