@@ -75,7 +75,7 @@ const imageScale = () => {
 
 	ScrollTrigger.matchMedia({
 		'(min-width: 1035px)': function () {
-      const finalImagePosition = { right: 40, top: 40, bottom: 40, left: '50%', width: 'initial', duration: 1.25 }
+      const finalImagePosition = { height: 657, right: 40, top: 40, bottom: 40, left: '50%', width: 'initial', duration: 1.25 }
       chaptersTimeline.fromTo(imageOverlay, { opacity: 1 }, { opacity: 0 })
       chaptersTimeline.fromTo(imageContainer, initialImagePositionDesktop, finalImagePosition, '<')
     },
