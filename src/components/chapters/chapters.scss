@@ -204,7 +204,7 @@ body {
 
 .chapters-header-title {
   font-size: 36px;
-  padding-bottom: 36px;
+  padding-bottom: 27px;
 }
 
 .chapters-summary {
@@ -231,24 +231,43 @@ body {
 }
 
 .chapters-sticky-container {
+  box-sizing: border-box;
   display: none;
-  height: 100vh;
+  flex-direction: column-reverse;
+  padding: 18px;
+  position: relative;
   width: 100%;
+}
+
+.chapters-sticky-image {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  width: 100%;
+}
+
+.chapters-sticky-left {
+  // background: tan;
+  height: 100%;
+}
+
+.chapters-sticky-right {
+  // background: salmon;
+  padding-bottom: 27px;
 }
 
 .bg-tan .chapters-sticky-container {
   background: #F1E4C7;
-  display: block;
+  display: flex;
 }
 
 .bg-field-02 .chapters-sticky-container {
   background: #BFB8A6;
-  display: block;
+  display: flex;
 }
 
 .bg-green .chapters-sticky-container {
   background: #2F372F;
-  display: block;
+  display: flex;
 }
 
 @include isSafari {
@@ -275,6 +294,11 @@ body {
     margin-bottom: 20px;
   }
 
+  .chapters-header-title {
+    font-size: 36px;
+    padding-bottom: 36px;
+  }
+
   .chapters-image {
     padding-left: 45px;
   }
@@ -294,6 +318,37 @@ body {
     position: absolute;
     width: 50%;
     padding: 45px;
+  }
+
+  .chapters-sticky-container {
+    flex-direction: row;
+    padding: 0 45px;
+    width: 100%;
+  }
+
+  .chapters-sticky-image {
+    aspect-ratio: initial;
+    object-fit: cover;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    position: sticky;
+    top: 0;
+    padding-top: 45px;
+  }
+
+  .chapters-sticky-left {
+    box-sizing: border-box;
+    height: 100%;
+    flex: 1;
+    padding: 45px 0;
+    padding-right: 22.5px;
+  }
+
+  .chapters-sticky-right {
+    padding-bottom: 45px;
+    padding-left: 22.5px;
+    box-sizing: border-box;
+    flex: 1;
   }
 }
 
