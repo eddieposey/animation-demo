@@ -113,18 +113,14 @@ const chaptersAnimation = (textElementsByID) => {
     console.error('each listed text item needs to have a unique id on its html element. please review the loop in the template to add a unique id.')
   }
 
-  const animationContainer = document.getElementById('chapters')
-  const bgTan = animationContainer.classList.contains('bg-tan')
-  const bgGreen = animationContainer.classList.contains('bg-green')
-  const bgField = animationContainer.classList.contains('bg-field-02')
-  const containsBgClass = bgTan || bgGreen || bgField
+  const complex = document.querySelector("[data-chapters='complex']");
+  const simple = document.querySelector("[data-chapters='simple']");
 
-  if(containsBgClass) {
-    setScrollRailPosition()
+  if(simple) {
     textElementsByID.forEach(element => cursorAnimation(element))
   }
 
-  if(!containsBgClass) {
+  if(complex) {
     setScrollRailPosition()
     textElementsByID.forEach(element => cursorAnimation(element))
     captionFade()

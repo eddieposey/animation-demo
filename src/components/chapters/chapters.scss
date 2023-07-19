@@ -12,15 +12,15 @@ body {
   text-transform: uppercase;
 }
 
-.bg-green .chapters-text {
+[data-chapters="simple"].bg-green .chapters-text {
   color: #FFCC01;
 }
 
-.bg-tan .chapters-text {
+[data-chapters="simple"].bg-tan .chapters-text {
   color: #000;
 }
 
-.bg-field-02 .chapters-text {
+[data-chapters="simple"].bg-field-02 .chapters-text {
   color: #000;
 }
 
@@ -45,16 +45,16 @@ body {
   background: #FFCC01;
 }
 
-.bg-green .chapters-cursor {
-    background: #FFCC01;
+[data-chapters="simple"].bg-green .chapters-cursor {
+  background: #FFCC01;
 }
 
-.bg-tan .chapters-cursor {
-    background: #000;
+[data-chapters="simple"].bg-tan .chapters-cursor {
+  background: #000;
 }
 
-.bg-field-02 .chapters-cursor {
-    background: #000;
+[data-chapters="simple"].bg-field-02 .chapters-cursor {
+  background: #000;
 }
 
 .chapters-animation-container {
@@ -63,9 +63,7 @@ body {
   width: 100%;
 }
 
-.bg-tan .chapters-animation-container,
-.bg-field-02 .chapters-animation-container,
-.bg-green .chapters-animation-container {
+[data-chapters="simple"] .chapters-animation-container {
   height: 800vh;
 }
 
@@ -85,15 +83,15 @@ body {
   right: 0;
 }
 
-.bg-green .chapters-image-overlay {
+[data-chapters="simple"].bg-green .chapters-image-overlay {
   background: #2F372F;
 }
 
-.bg-tan .chapters-image-overlay {
+[data-chapters="simple"].bg-tan .chapters-image-overlay {
   background: #F1E4C7;
 }
 
-.bg-field-02 .chapters-image-overlay {
+[data-chapters="simple"].bg-field-02 .chapters-image-overlay {
   background: #BFB8A6;
 }
 
@@ -154,31 +152,31 @@ body {
   z-index: 1;
 }
 
-.bg-green .chapters-animation-text {
+.bg-green .chapters-animation-copy {
   color:#F1E4C7;
 }
 
-.bg-tan .chapters-animation-text {
+.bg-tan .chapters-animation-copy {
   color:#000;
 }
 
-.bg-field-02 .chapters-animation-text {
+.bg-field-02 .chapters-animation-copy {
   color:#000;
 }
 
-.chapters-animation-text path {
+.chapters-animation-copy path {
   fill:#000;
 }
 
-.bg-green .chapters-animation-text path {
+.bg-green .chapters-animation-copy path {
   fill:#F1E4C7;
 }
 
-.bg-tan .chapters-animation-text path {
+.bg-tan .chapters-animation-copy path {
   fill:#000;
 }
 
-.bg-field-02 .chapters-animation-text path {
+.bg-field-02 .chapters-animation-copy path {
   fill:#000;
 }
 
@@ -230,46 +228,6 @@ body {
   padding-top: 45px;
 }
 
-.chapters-sticky-container {
-  box-sizing: border-box;
-  display: none;
-  flex-direction: column-reverse;
-  padding: 18px;
-  position: relative;
-  width: 100%;
-}
-
-.chapters-sticky-image {
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  width: 100%;
-}
-
-.chapters-sticky-left {
-  // background: tan;
-  height: 100%;
-}
-
-.chapters-sticky-right {
-  // background: salmon;
-  padding-bottom: 27px;
-}
-
-.bg-tan .chapters-sticky-container {
-  background: #F1E4C7;
-  display: flex;
-}
-
-.bg-field-02 .chapters-sticky-container {
-  background: #BFB8A6;
-  display: flex;
-}
-
-.bg-green .chapters-sticky-container {
-  background: #2F372F;
-  display: flex;
-}
-
 @include isSafari {
   .chapters-animation-container {
     height: 1200lvh;
@@ -318,37 +276,6 @@ body {
     position: absolute;
     width: 50%;
     padding: 45px;
-  }
-
-  .chapters-sticky-container {
-    flex-direction: row;
-    padding: 0 45px;
-    width: 100%;
-  }
-
-  .chapters-sticky-image {
-    aspect-ratio: initial;
-    object-fit: cover;
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    position: sticky;
-    top: 0;
-    padding-top: 45px;
-  }
-
-  .chapters-sticky-left {
-    box-sizing: border-box;
-    height: 100%;
-    flex: 1;
-    padding: 45px 0;
-    padding-right: 22.5px;
-  }
-
-  .chapters-sticky-right {
-    padding-bottom: 45px;
-    padding-left: 22.5px;
-    box-sizing: border-box;
-    flex: 1;
   }
 }
 
