@@ -1,0 +1,62 @@
+:root {
+  --wrapper-height: 605vh;
+  --timeline-height: 500vh;
+  --timeline-positioning: -100vh;
+  --animation-viewport: 100vh;
+  --rail-margin: -100vh;
+  --rail-minimum-height: 100vh;
+}
+
+.wrapper {
+  background: beige;
+  min-height: var(--wrapper-height);
+  position: relative;
+  width: 100%;
+}
+
+.container-stage {
+  align-items: center;
+  background: lightgrey;
+  display: flex;
+  height: var(--animation-viewport);
+  justify-content: center;
+  opacity: 0.5;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.testing {
+  background: blue;
+  bottom: 50px;
+  position: absolute;
+  right: 50px;
+  top: 50px;
+  width: 40%;
+}
+
+.container-timeline {
+  background: pink;
+  height: var(--timeline-height);
+  position: relative;
+  top: var(--timeline-positioning);
+  width: 100%;
+}
+
+.container-list {
+  bottom: 0;
+  box-sizing: border-box;
+  margin-top: var(--rail-margin);
+  padding-left: 2rem;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.list {
+  background: lightseagreen;
+  min-height: var(--rail-minimum-height);
+  padding-top: 4rem;
+  width: 50%;
+}

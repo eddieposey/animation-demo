@@ -1,1 +1,1 @@
-import chapters from './components/chapters/chapters.js'
+import chapters from './components/chap/chap.js'
