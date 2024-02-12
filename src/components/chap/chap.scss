@@ -1,11 +1,11 @@
 @import '../../styles/breakpoints.scss';
 
-:root {
+.chap {
   --wrapper-height: 605vh;
   --timeline-height: 500vh;
-  --timeline-positioning: -100vh;
+  --timeline-positioning: 0;
   --animation-viewport: 100vh;
-  --rail-margin: -100vh;
+  --rail-margin: 0;
   --rail-minimum-height: 100vh;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .mobile {
-  
+  display: block;
 }
 
 .wrapper {
@@ -72,6 +72,11 @@
 }
 
 @include BreakPoint(md) {
+  .chap {
+    --timeline-positioning: -100vh;
+    --rail-margin: -100vh;
+  }
+
   .mobile {
     display: none;
   }

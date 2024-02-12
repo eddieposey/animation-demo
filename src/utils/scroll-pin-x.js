@@ -1,18 +1,35 @@
-const scrollPinX = (element, animation) => {
-  const el = document.querySelector(element)
-  const options = { threshold: [0.01, 0.1, 1] }
+const scrollPinX = (element, animation, version) => {
+  const el = element
+  const options = { threshold: [0.01, 0.05, 1] }
 
-  const  calculateDistance = () => {
+  const timelineOffScreen = () => {
     const elementProperties = el.getBoundingClientRect();
-    const distanceFromBottom = 100 - (((elementProperties.top + elementProperties.height) / elementProperties.height) * 100);
-    if(distanceFromBottom < 0) return 0
-    if(distanceFromBottom > 100) return 100
-    return distanceFromBottom
+    const distanceFromBottomPercentage = 100 - (((elementProperties.top + elementProperties.height) / elementProperties.height) * 100);
+    if(distanceFromBottomPercentage < 0) return 0
+    if(distanceFromBottomPercentage > 100) return 100
+    console.log(distanceFromBottomPercentage)
+    return distanceFromBottomPercentage
+  }
+
+  const timelineLeavesBottomOfWindow = () => {
+    const elementProperties = el.getBoundingClientRect();
+    const remainingSpace = elementProperties.height - window.innerHeight
+    const percentageScrolled = (elementProperties.top / remainingSpace) * 100
+    if (percentageScrolled > 0) return 0
+    if (percentageScrolled < -100) return 100
+    console.log(Math.abs(percentageScrolled))
+    return Math.abs(percentageScrolled)
   }
 
   const scrubAnimation = () => {
-    // animation.seek((calculateDistance()) * animation.duration())
-    console.log(calculateDistance())
+    // animation.seek((timelineOffScreen()) * animation.duration())
+    if(version === 'simple') {
+      timelineLeavesBottomOfWindow()
+    }
+
+    if(version === 'enhanced') {
+      timelineOffScreen()
+    }
   }
 
   const setAnimationPositionOnLoad = () => {
@@ -41,7 +58,7 @@ const scrollPinX = (element, animation) => {
   }
 
   const intersectionObserver = new IntersectionObserver(intersectionCallback, options)
-  intersectionObserver.observe(document.querySelector(element))
+  intersectionObserver.observe(element)
 }
 
 const scrollCalculator = () => {}
