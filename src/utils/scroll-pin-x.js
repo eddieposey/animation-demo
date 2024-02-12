@@ -2,33 +2,31 @@ const scrollPinX = (element, animation, version) => {
   const el = element
   const options = { threshold: [0.01, 0.05, 1] }
 
-  const timelineOffScreen = () => {
+  const timelineBottomReachesTopOfWindow = () => {
     const elementProperties = el.getBoundingClientRect();
     const distanceFromBottomPercentage = 100 - (((elementProperties.top + elementProperties.height) / elementProperties.height) * 100);
     if(distanceFromBottomPercentage < 0) return 0
     if(distanceFromBottomPercentage > 100) return 100
-    console.log(distanceFromBottomPercentage)
     return distanceFromBottomPercentage
   }
 
-  const timelineLeavesBottomOfWindow = () => {
+  const timelineBottomLeavesBottomOfWindow = () => {
     const elementProperties = el.getBoundingClientRect();
     const remainingSpace = elementProperties.height - window.innerHeight
     const percentageScrolled = (elementProperties.top / remainingSpace) * 100
     if (percentageScrolled > 0) return 0
     if (percentageScrolled < -100) return 100
-    console.log(Math.abs(percentageScrolled))
     return Math.abs(percentageScrolled)
   }
 
   const scrubAnimation = () => {
-    // animation.seek((timelineOffScreen()) * animation.duration())
+    // animation.seek((timelineBottomReachesTopOfWindow()) * animation.duration())
     if(version === 'simple') {
-      timelineLeavesBottomOfWindow()
+      console.log(timelineBottomLeavesBottomOfWindow())
     }
 
     if(version === 'enhanced') {
-      timelineOffScreen()
+      console.log(timelineBottomReachesTopOfWindow())
     }
   }
 
