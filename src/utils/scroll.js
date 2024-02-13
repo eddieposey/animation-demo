@@ -63,7 +63,7 @@ const scrollDistance = (element, animation, startDistance, endDistance) => {
   const ratio = startDistance > endDistance ? (startDistance - endDistance) / 100 : null
 
   if (!ratio) {
-    console.error('The start and end distance is the Y position of the element in relation to the top of the window. The start position must be greater than the end position.')
+    console.error(`The start distance and end distance are each the Y position of the element ('.${el.className}') in relation to the top of the window. The start position must be greater than the end position.`)
     return
   }
 
