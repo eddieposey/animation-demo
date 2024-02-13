@@ -1,26 +1,26 @@
 @import '../../styles/breakpoints.scss';
 
 .chap {
-  --wrapper-height: 605vh;
-  --timeline-height: 500vh;
-  --timeline-positioning: 0;
   --animation-viewport: 100vh;
   --rail-margin: 0;
   --rail-minimum-height: 100vh;
-  --transition-padding: 50px;
   --shrunk-image-height: 255px;
+  --timeline-height: 500vh;
+  --timeline-positioning: 0;
+  --transition-padding: 50px;
+  --wrapper-height: 605vh;
 }
 
 .desktop {
-  display: none;
   --timeline-positioning: -100vh;
   --rail-margin: -100vh;
+  display: none;
 }
 
 .mobile {
-  display: block;
   --timeline-positioning: 0;
   --rail-margin: 0;
+  display: block;
 }
 
 .wrapper {

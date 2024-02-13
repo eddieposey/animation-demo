@@ -27,8 +27,8 @@ const scrollPin = (element, animation, version) => {
   const timelineBottomReachesTopOfWindow = () => {
     const elementProperties = el.getBoundingClientRect()
     const distanceFromBottomPercentage = 100 - (((elementProperties.top + elementProperties.height) / elementProperties.height) * 100)
-    if(distanceFromBottomPercentage < 0) return 0
-    if(distanceFromBottomPercentage > 100) return 100
+    if (distanceFromBottomPercentage < 0) return 0
+    if (distanceFromBottomPercentage > 100) return 100
     return distanceFromBottomPercentage
   }
 
@@ -42,12 +42,12 @@ const scrollPin = (element, animation, version) => {
   }
 
   const scrubAnimation = () => {
-    if(version === 'simple') {
+    if (version === 'simple') {
       // animation.seek((timelineBottomReachesTopOfWindow()) * animation.duration())
       // console.log(timelineBottomLeavesBottomOfWindow())
     }
 
-    if(version === 'enhanced') {
+    if (version === 'enhanced') {
       // animation.seek((timelineBottomReachesTopOfWindow()) * animation.duration())
       // console.log(timelineBottomReachesTopOfWindow())
     }
@@ -58,27 +58,28 @@ const scrollPin = (element, animation, version) => {
   intersectionObserver.observe(element)
 }
 
-const shrinkMobileImage = (element) => {
+const scrollDistance = (element, animation, startDistance, endDistance) => {
   const el = element
-  // const shrinkImageHeight = getComputedStyle(document.querySelector('.chap')).getPropertyValue('--shrunk-image-height').replace('px', '')
-  // const shrinkImageDistance = `${shrinkImageHeight + 100}px`
+  const ratio = startDistance > endDistance ? (startDistance - endDistance) / 100 : null
+
+  if (!ratio) {
+    console.error('The start and end distance is the Y position of the element in relation to the top of the window. The start position must be greater than the end position.')
+    return
+  }
 
   const calculatePixelDistance = () => {
     const elementProperties = el.getBoundingClientRect()
-    const distance = Math.abs(elementProperties.top - 500)
-    if (elementProperties.top <= 500 && elementProperties.top >= 400) return distance
-    if (elementProperties.top <= 500) return 100
-    if (elementProperties.top >= 400) return 0
+    const distance = Math.abs(elementProperties.top - startDistance) / ratio
+    if (elementProperties.top <= startDistance && elementProperties.top >= endDistance) return distance
+    if (elementProperties.top <= startDistance) return 100
+    if (elementProperties.top >= endDistance) return 0
     return distance
   }
 
-  const scrubAnimation = () => {
-    console.log(calculatePixelDistance())
-  }
-
+  const scrubAnimation = () => console.log(calculatePixelDistance())
   const setAnimationPositionOnLoad = () => scrubAnimation()
   const intersectionObserver = new IntersectionObserver(intersectionCallback.bind(null, setAnimationPositionOnLoad, scrubAnimation), options)
   intersectionObserver.observe(element)
 }
 
-export { scrollPin, shrinkMobileImage }
+export { scrollPin, scrollDistance }
