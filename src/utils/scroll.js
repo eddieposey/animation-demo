@@ -4,7 +4,7 @@ const intersectionCallback = (load, scrub, entry) => {
   const timelineDiv = entry[0] ? entry[0] : null
 
   if (!timelineDiv) {
-    console.error(`Couldn't find the div element you are referring to by the name of - ${element}`)
+    console.error(`Couldn't find the div element - .${element}`)
     return
   }
 
@@ -21,7 +21,7 @@ const intersectionCallback = (load, scrub, entry) => {
   }
 }
 
-const scrollPin = (element, animation, version) => {
+const scrollPin = (element, animation, enhanced) => {
   const el = element
 
   const timelineBottomReachesTopOfWindow = () => {
@@ -42,12 +42,12 @@ const scrollPin = (element, animation, version) => {
   }
 
   const scrubAnimation = () => {
-    if (version === 'simple') {
+    if (enhanced) {
       // animation.seek((timelineBottomReachesTopOfWindow()) * animation.duration())
       console.log(timelineBottomLeavesBottomOfWindow())
     }
 
-    if (version === 'enhanced') {
+    if (!enhanced) {
       // animation.seek((timelineBottomReachesTopOfWindow()) * animation.duration())
       console.log(timelineBottomReachesTopOfWindow())
     }
