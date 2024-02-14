@@ -10,10 +10,23 @@ const timelineError = () => {
 
 const intersectionCallback = (animationPositionOnLoad, scrubAnimation, observedElements) => {
   const timelineDiv = observedElements[0] ? observedElements[0] : null
-  if (!timelineDiv) { timelineError(); return }
-  if (timelineDiv) { animationPositionOnLoad() }
-  if (timelineDiv.isIntersecting) { window.addEventListener('scroll', scrubAnimation, { passive: true }) }
-  if (!timelineDiv.isIntersecting) { window.removeEventListener('scroll', scrubAnimation) }
+
+  if (!timelineDiv) {
+    timelineError();
+    return
+  }
+
+  if (timelineDiv) {
+    animationPositionOnLoad()
+  }
+
+  if (timelineDiv.isIntersecting) {
+    window.addEventListener('scroll', scrubAnimation, { passive: true })
+  }
+
+  if (!timelineDiv.isIntersecting) {
+    window.removeEventListener('scroll', scrubAnimation)
+  }
 }
 
 const scrollPin = (element, animation, enhanced) => {
@@ -37,8 +50,13 @@ const scrollPin = (element, animation, enhanced) => {
   }
 
   const scrubAnimation = () => {
-    if (enhanced) { console.log(timelineBottomLeavesBottomOfWindow()) }
-    if (!enhanced) { console.log(timelineBottomReachesTopOfWindow()) }
+    if (enhanced) {
+      console.log(timelineBottomLeavesBottomOfWindow())
+    }
+
+    if (!enhanced) {
+      console.log(timelineBottomReachesTopOfWindow())
+    }
   }
 
   const setAnimationPositionOnLoad = () => scrubAnimation()
@@ -50,7 +68,10 @@ const scrollDistance = (element, animation, startDistance, endDistance) => {
   const el = element
   const ratio = startDistance > endDistance ? (startDistance - endDistance) / 100 : null
 
-  if (!ratio) { ratioError(); return }
+  if (!ratio) {
+    ratioError()
+    return
+  }
 
   const calculatePixelDistance = () => {
     const elementProperties = el.getBoundingClientRect()
