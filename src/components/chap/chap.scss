@@ -1,6 +1,6 @@
 @import '../../styles/breakpoints.scss';
 
-.chap {
+.ch {
   --animation-viewport: 100vh;
   --rail-margin: 0;
   --rail-minimum-height: 100vh;
@@ -11,26 +11,26 @@
   --wrapper-height: 605vh;
 }
 
-.desktop {
+.ch-desktop {
   --timeline-positioning: -100vh;
   --rail-margin: -100vh;
   display: none;
 }
 
-.mobile {
+.ch-mobile {
   --timeline-positioning: 0;
   --rail-margin: 0;
   display: block;
 }
 
-.wrapper {
+.ch-wrap {
   background: beige;
   min-height: var(--wrapper-height);
   position: relative;
   width: 100%;
 }
 
-.container-stage {
+.ch-stage {
   align-items: center;
   background: lightgrey;
   display: flex;
@@ -43,7 +43,7 @@
   z-index: 1;
 }
 
-.container-animation {
+.ch-anim {
   background: blue;
   bottom: var(--transition-padding);
   position: absolute;
@@ -52,7 +52,7 @@
   width: 40%;
 }
 
-.container-timeline {
+.ch-time {
   background: pink;
   height: var(--timeline-height);
   position: relative;
@@ -60,7 +60,7 @@
   width: 100%;
 }
 
-.container-list {
+.ch-rail {
   bottom: 0;
   box-sizing: border-box;
   margin-top: var(--rail-margin);
@@ -70,7 +70,7 @@
   z-index: 2;
 }
 
-.list {
+.ch-items {
   background: lightseagreen;
   min-height: var(--rail-minimum-height);
   padding-top: var(--transition-padding);
@@ -78,11 +78,11 @@
 }
 
 @include BreakPoint(md) {
-  .mobile {
+  .ch-mobile {
     display: none;
   }
 
-  .desktop {
+  .ch-desktop {
     display: block;
   }
 }

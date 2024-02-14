@@ -1,24 +1,19 @@
 const options = { threshold: [0.01, 0.1, 1] }
 
-const intersectionCallback = (load, scrub, entry) => {
-  const timelineDiv = entry[0] ? entry[0] : null
+const ratioError = () => {
+  console.error(`The start distance and end distance are each the Y position of the element ('.${el.className}') in relation to the top of the window. The start position must be greater than the end position.`)
+}
 
-  if (!timelineDiv) {
-    console.error(`Couldn't find the div element - .${element}`)
-    return
-  }
+const timelineError = () => {
+  console.error(`Couldn't find the div element you are referring to by the name of - ${element}`)
+}
 
-  if (timelineDiv) {
-    load()
-  }
-
-  if (timelineDiv.isIntersecting) {
-    window.addEventListener('scroll', scrub, { passive: true })
-  }
-
-  if (!timelineDiv.isIntersecting) {
-    window.removeEventListener('scroll', scrub)
-  }
+const intersectionCallback = (animationPositionOnLoad, scrubAnimation, observedElements) => {
+  const timelineDiv = observedElements[0] ? observedElements[0] : null
+  if (!timelineDiv) { timelineError(); return }
+  if (timelineDiv) { animationPositionOnLoad() }
+  if (timelineDiv.isIntersecting) { window.addEventListener('scroll', scrubAnimation, { passive: true }) }
+  if (!timelineDiv.isIntersecting) { window.removeEventListener('scroll', scrubAnimation) }
 }
 
 const scrollPin = (element, animation, enhanced) => {
@@ -42,15 +37,8 @@ const scrollPin = (element, animation, enhanced) => {
   }
 
   const scrubAnimation = () => {
-    if (enhanced) {
-      // animation.seek((timelineBottomReachesTopOfWindow()) * animation.duration())
-      console.log(timelineBottomLeavesBottomOfWindow())
-    }
-
-    if (!enhanced) {
-      // animation.seek((timelineBottomReachesTopOfWindow()) * animation.duration())
-      console.log(timelineBottomReachesTopOfWindow())
-    }
+    if (enhanced) { console.log(timelineBottomLeavesBottomOfWindow()) }
+    if (!enhanced) { console.log(timelineBottomReachesTopOfWindow()) }
   }
 
   const setAnimationPositionOnLoad = () => scrubAnimation()
@@ -62,10 +50,7 @@ const scrollDistance = (element, animation, startDistance, endDistance) => {
   const el = element
   const ratio = startDistance > endDistance ? (startDistance - endDistance) / 100 : null
 
-  if (!ratio) {
-    console.error(`The start distance and end distance are each the Y position of the element ('.${el.className}') in relation to the top of the window. The start position must be greater than the end position.`)
-    return
-  }
+  if (!ratio) { ratioError(); return }
 
   const calculatePixelDistance = () => {
     const elementProperties = el.getBoundingClientRect()
