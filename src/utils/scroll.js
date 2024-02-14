@@ -29,8 +29,10 @@ const intersectionCallback = (animationPositionOnLoad, scrubAnimation, observedE
   }
 }
 
-const scrollPin = (element, animation, enhanced) => {
+const scrollPin = (element, animation, bottom) => {
   const el = element
+  const trackToTop = bottom
+  const trackFromBottom = !bottom
 
   const timelineBottomReachesTopOfWindow = () => {
     const elementProperties = el.getBoundingClientRect()
@@ -50,12 +52,12 @@ const scrollPin = (element, animation, enhanced) => {
   }
 
   const scrubAnimation = () => {
-    if (enhanced) {
-      console.log(timelineBottomLeavesBottomOfWindow())
+    if (trackToTop) {
+      console.log(timelineBottomReachesTopOfWindow())
     }
 
-    if (!enhanced) {
-      console.log(timelineBottomReachesTopOfWindow())
+    if (trackFromBottom) {
+      console.log(timelineBottomLeavesBottomOfWindow())
     }
   }
 
