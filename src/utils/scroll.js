@@ -12,7 +12,7 @@ const intersectionCallback = (animationPositionOnLoad, scrubAnimation, observedE
   const timelineDiv = observedElements[0] ? observedElements[0] : null
 
   if (!timelineDiv) {
-    timelineError();
+    timelineError()
     return
   }
 

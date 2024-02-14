@@ -1,6 +1,10 @@
 @import '../../styles/breakpoints.scss';
 
-.ch {
+/////////////////////////////
+// variables
+/////////////////////////////
+
+[data-component="chapters"] {
   --animation-viewport: 100vh;
   --rail-margin: 0;
   --rail-minimum-height: 100vh;
@@ -22,6 +26,19 @@
   --rail-margin: 0;
   display: block;
 }
+
+/////////////////////////////
+// themes
+/////////////////////////////
+
+[data-component="chapters"].bg-tan {
+
+}
+
+
+/////////////////////////////
+// enhanced and plus layout
+/////////////////////////////
 
 .ch-wrap {
   background: beige;
@@ -52,7 +69,7 @@
   width: 40%;
 }
 
-.ch-time {
+.ch-timeline {
   background: pink;
   height: var(--timeline-height);
   position: relative;
@@ -86,3 +103,7 @@
     display: block;
   }
 }
+
+/////////////////////////////
+// static layout
+/////////////////////////////
