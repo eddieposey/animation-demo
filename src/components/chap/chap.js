@@ -18,7 +18,6 @@ const simpleInit = () => {
   if(simpleScrollHandlersInitiated) return
 
   simpleChapters.forEach((element) => scrollPin(element.querySelectorAll(time), () => {}, true))
-
   window['simpleChapters'] = true
 }
 

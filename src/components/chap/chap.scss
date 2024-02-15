@@ -12,7 +12,7 @@
   --timeline-height: 500vh;
   --timeline-positioning: 0;
   --transition-padding: 50px;
-  --wrapper-height: 605vh;
+  --wrapper-height: 600vh;
 }
 
 .ch-desktop {
@@ -42,7 +42,7 @@
 
 .ch-wrap {
   background: beige;
-  min-height: var(--wrapper-height);
+  // min-height: var(--wrapper-height);
   position: relative;
   width: 100%;
 }
@@ -89,7 +89,7 @@
 
 .ch-items {
   background: lightseagreen;
-  min-height: var(--rail-minimum-height);
+  box-sizing: border-box;
   padding-top: var(--transition-padding);
   width: 50%;
 }
@@ -101,6 +101,10 @@
 
   .ch-desktop {
     display: block;
+  }
+
+  .ch-items {
+    min-height: var(--rail-minimum-height);
   }
 }
 
