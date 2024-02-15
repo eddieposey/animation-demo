@@ -8,7 +8,7 @@ const timelineError = () => {
   console.error(`Couldn't find the div element you are referring to by the name of - ${element}`)
 }
 
-const intersectionCallback = (animationPositionOnLoad, scrubAnimation, observedElements) => {
+const intersectionScrollCallback = (animationPositionOnLoad, scrubAnimation, observedElements) => {
   const timelineDiv = observedElements[0] ? observedElements[0] : null
 
   if (!timelineDiv) {
@@ -62,7 +62,7 @@ const scrollPin = (element, animation, bottom) => {
   }
 
   const setAnimationPositionOnLoad = () => scrubAnimation()
-  const intersectionObserver = new IntersectionObserver(intersectionCallback.bind(null, setAnimationPositionOnLoad, scrubAnimation), options)
+  const intersectionObserver = new IntersectionObserver(intersectionScrollCallback.bind(null, setAnimationPositionOnLoad, scrubAnimation), options)
   intersectionObserver.observe(element)
 }
 
@@ -86,7 +86,7 @@ const scrollDistance = (element, animation, startDistance, endDistance) => {
 
   const scrubAnimation = () => animation.duration ? animation.seek((calculatePixelDistance() / 100) * animation.duration()) : null
   const setAnimationPositionOnLoad = () => scrubAnimation()
-  const intersectionObserver = new IntersectionObserver(intersectionCallback.bind(null, setAnimationPositionOnLoad, scrubAnimation), options)
+  const intersectionObserver = new IntersectionObserver(intersectionScrollCallback.bind(null, setAnimationPositionOnLoad, scrubAnimation), options)
   intersectionObserver.observe(element)
 }
 

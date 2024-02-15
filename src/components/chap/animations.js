@@ -30,15 +30,36 @@ const scaleBG = (element) => {
   return scaleTimeline
 }
 
-const shrinkBG = (element) => {
+const shrinkBG = (element, forwards) => {
   const shrink = gsap.timeline(options)
-
-  const start = { height: '100%', left: 0, right: 0, bottom: 0}
+  const start = { height: '100%', left: 0, right: 0, bottom: 0, opacity: 1}
   const end = { height: '255px', left: railPadding, right: railPadding }
 
-  shrink.fromTo(element, start, end)
+  if(forwards) {
+    shrink.to(element, end)
+  }
+
+  if (!forwards) {
+    shrink.to(element, start)
+  }
 
   return shrink
 }
 
-export { scaleBG, railFade, shrinkBG }
+const fade = (element, forwards) => {
+  const fade = gsap.timeline(options)
+  const start = { opacity: 0 }
+  const end = { opacity: 1 }
+
+  if(forwards) {
+    fade.to(element, end)
+  }
+
+  if (!forwards) {
+    fade.to(element, start)
+  }
+
+  return fade
+}
+
+export { scaleBG, railFade, shrinkBG, fade }

@@ -1,7 +1,9 @@
-import { scrollPin, scrollDistance } from '../../utils/scroll'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js'
+import { scaleBG, railFade, shrinkBG, fade } from './animations'
+import { scrollPin, scrollDistance, scrollTrigger } from '../../utils/scroll'
 import './chap.scss'
 import '../../styles/utils.scss'
-import { scaleBG, railFade, shrinkBG } from './animations'
 
 const time = '.ch-timeline'
 const deskTime = '.ch-desktop .ch-timeline'
@@ -10,6 +12,8 @@ const deskAnim = '.ch-desktop .ch-anim'
 const mobiTime = '.ch-mobile .ch-timeline'
 const mobiRail = '.ch-mobile .ch-rail'
 const mobiAnim = '.ch-mobile .ch-anim'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const simpleInit = () => {
   const simpleScrollHandlersInitiated = window['simpleChapters']
@@ -34,8 +38,20 @@ const enhancedInit = () => {
     scrollPin(element.querySelector(deskTime), scaleBG(element.querySelector(deskAnim)), true)
     scrollDistance(element.querySelector(deskRail), railFade(element.querySelector(deskRail)), 800, 0)
     scrollPin(element.querySelector(mobiTime), () => {}) // typewriter
-    scrollDistance(element.querySelector(mobiRail), shrinkBG(element.querySelector(mobiAnim)), 600, 300) // shrink image
-    scrollDistance(element.querySelector(mobiRail), railFade(element.querySelector(mobiRail)), 700, 0)
+
+    ScrollTrigger.create({
+      trigger: mobiRail,
+      start: 'top 500px',
+      markers: true,
+      onEnter: () => {
+        shrinkBG(element.querySelector(mobiAnim), true).play()
+        fade(element.querySelector(mobiRail), true).play()
+      },
+      onLeaveBack: () => {
+        shrinkBG(element.querySelector(mobiAnim), false).play()
+        fade(element.querySelector(mobiRail), false).play()
+      }
+    });
   })
 
   window['enhancedChapters'] = true
