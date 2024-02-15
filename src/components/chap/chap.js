@@ -40,7 +40,7 @@ const enhancedInit = () => {
     scrollPin(element.querySelector(mobiTime), () => {}) // typewriter
 
     ScrollTrigger.create({
-      trigger: mobiRail,
+      trigger: element.querySelector(mobiRail),
       start: 'top 500px',
       markers: true,
       onEnter: () => {
