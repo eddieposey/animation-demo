@@ -4,30 +4,41 @@ import * as DOMPurify from 'dompurify'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const railFade = (container) => {
-  const chaptersTimeline = gsap.timeline({ paused: true, ease: 'Power0.easeNone' })
-  const element = container.querySelector('.ch-rail')
+const container = document.querySelector('[data-component="chapters"]')
+const railPadding = getComputedStyle(container).getPropertyValue('--transition-padding').replace('px', '')
+const options = { paused: true, ease: 'Power0.easeNone' }
+
+const railFade = (element) => {
+  const railTimeline = gsap.timeline(options)
 
   const start = { opacity: 0 }
   const end = { opacity: 1 }
 
-  chaptersTimeline.fromTo(element, start, end)
+  railTimeline.fromTo(element, start, end)
 
-  return chaptersTimeline
+  return railTimeline
 }
 
-const scaleBG = (container) => {
-  const chaptersTimeline = gsap.timeline({ paused: true, ease: 'Power0.easeNone' })
-
-  const element = container.querySelector('.ch-anim')
-  const railPadding = getComputedStyle(container).getPropertyValue('--transition-padding').replace('px', '')
+const scaleBG = (element) => {
+  const scaleTimeline = gsap.timeline(options)
 
   const start = {  width: '100vw', top: 0, bottom: 0, right: 0 }
   const end = { duration: 4, width: `calc(50vw - ${railPadding * 2}px)`, top: railPadding, bottom: railPadding, right: railPadding }
 
-  chaptersTimeline.fromTo(element, start, end)
+  scaleTimeline.fromTo(element, start, end)
 
-  return chaptersTimeline
+  return scaleTimeline
 }
 
-export { scaleBG, railFade }
+const shrinkBG = (element) => {
+  const shrink = gsap.timeline(options)
+
+  const start = { height: '100%', left: 0, right: 0, bottom: 0}
+  const end = { height: '255px', left: railPadding, right: railPadding }
+
+  shrink.fromTo(element, start, end)
+
+  return shrink
+}
+
+export { scaleBG, railFade, shrinkBG }

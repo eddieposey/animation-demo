@@ -9,7 +9,7 @@
   --rail-margin: 0;
   --rail-minimum-height: 100vh;
   --shrunk-image-height: 255px;
-  --timeline-height: 500vh;
+  --timeline-height: 325vh;
   --timeline-positioning: 0;
   --transition-padding: 45px;
   --wrapper-height: 600vh;
@@ -64,8 +64,8 @@
   bottom: var(--transition-padding);
   position: absolute;
   right: var(--transition-padding);
-  top: var(--transition-padding);
-  width: 40%;
+  // top: var(--transition-padding);
+  // width: 40%;
 }
 
 .ch-timeline {

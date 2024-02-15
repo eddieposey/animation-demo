@@ -1,15 +1,15 @@
 import { scrollPin, scrollDistance } from '../../utils/scroll'
 import './chap.scss'
 import '../../styles/utils.scss'
-import { scaleBG, railFade } from './animations'
+import { scaleBG, railFade, shrinkBG } from './animations'
 
 const time = '.ch-timeline'
 const deskTime = '.ch-desktop .ch-timeline'
 const deskRail = '.ch-desktop .ch-rail'
+const deskAnim = '.ch-desktop .ch-anim'
 const mobiTime = '.ch-mobile .ch-timeline'
 const mobiRail = '.ch-mobile .ch-rail'
-const container = document.querySelector('[data-component="chapters"]')
-const contentRailTopPadding = getComputedStyle(container).getPropertyValue('--transition-padding').replace('px', '')
+const mobiAnim = '.ch-mobile .ch-anim'
 
 const simpleInit = () => {
   const simpleScrollHandlersInitiated = window['simpleChapters']
@@ -31,11 +31,11 @@ const enhancedInit = () => {
   if (enhancedScrollHandlersInitiated) return
 
   enhancedChapters.forEach((element) => {
-    scrollPin(element.querySelector(deskTime), scaleBG(element), true)
-    scrollDistance(element.querySelector(deskRail), railFade(element), 800, 0)
-    scrollPin(element.querySelector(mobiTime), () => {})
-    scrollDistance(element.querySelector(mobiRail), () => {}, 600, 400)
-    scrollDistance(element.querySelector(mobiRail), () => {}, 500, 400)
+    scrollPin(element.querySelector(deskTime), scaleBG(element.querySelector(deskAnim)), true)
+    scrollDistance(element.querySelector(deskRail), railFade(element.querySelector(deskRail)), 800, 0)
+    scrollPin(element.querySelector(mobiTime), () => {}) // typewriter
+    scrollDistance(element.querySelector(mobiRail), shrinkBG(element.querySelector(mobiAnim)), 600, 300) // shrink image
+    scrollDistance(element.querySelector(mobiRail), railFade(element.querySelector(mobiRail)), 700, 0)
   })
 
   window['enhancedChapters'] = true
@@ -50,7 +50,7 @@ const plusInit = () => {
 
   plusChapters.forEach((element) => {
     scrollPin(element.querySelector(deskTime), () => {}, true)
-    scrollDistance(element.querySelector(deskRail), () => {}, contentRailTopPadding, 0)
+    scrollDistance(element.querySelector(deskRail), railFade(element.querySelector(deskRail)), 800, 0)
     scrollPin(element.querySelector(mobiTime), () => {})
     scrollDistance(element.querySelector(mobiRail), () => {}, 600, 400)
     scrollDistance(element.querySelector(mobiRail), () => {}, 500, 400)
