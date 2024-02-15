@@ -23,12 +23,12 @@ const simpleInit = () => {
 
 const enhancedInit = () => {
   const enhancedScrollHandlersInitiated = window['enhancedChapters']
-  const enhancedChapers = document.querySelectorAll('[data-type="enhanced"]')
+  const enhancedChapters = document.querySelectorAll('[data-type="enhanced"]')
 
-  if (enhancedChapers.length === 0) return
+  if (enhancedChapters.length === 0) return
   if (enhancedScrollHandlersInitiated) return
 
-  enhancedChapers.forEach((element) => {
+  enhancedChapters.forEach((element) => {
     scrollPin(element.querySelector(deskTime), () => {}, true)
     scrollDistance(element.querySelector(deskRail), () => {}, contentRailTopPadding, 0)
     scrollPin(element.querySelector(mobiTime), () => {})
