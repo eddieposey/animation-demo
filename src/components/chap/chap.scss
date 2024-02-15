@@ -83,6 +83,7 @@
   margin-top: var(--rail-margin);
   position: relative;
   width: 100%;
+  opacity: 0;
   z-index: 2;
 }
 
@@ -100,6 +101,10 @@
 
   .ch-desktop {
     display: block;
+  }
+
+  .ch-rail {
+    opacity: 1;
   }
 
   .ch-items {
