@@ -22,7 +22,7 @@ const railFade = (element) => {
 const scaleBG = (element) => {
   const scaleTimeline = gsap.timeline(options)
 
-  const start = {  width: '100vw', top: 0, bottom: 0, right: 0 }
+  const start = {  width: '100vw', top: 0, bottom: 0, right: 0, left: 'initial', height: 'initial' }
   const end = { duration: 4, width: `calc(50vw - ${railPadding * 2}px)`, top: railPadding, bottom: railPadding, right: railPadding }
 
   scaleTimeline.fromTo(element, start, end)
@@ -32,7 +32,7 @@ const scaleBG = (element) => {
 
 const shrinkBG = (element, forwards) => {
   const shrink = gsap.timeline(options)
-  const start = { height: '100%', left: 0, right: 0, bottom: 0, opacity: 1}
+  const start = { height: '100%', left: 0, right: 0, bottom: 0 }
   const end = { height: '255px', left: railPadding, right: railPadding }
 
   if(forwards) {

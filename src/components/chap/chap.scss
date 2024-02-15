@@ -61,11 +61,12 @@
 
 .ch-anim {
   background: blue;
-  bottom: var(--transition-padding);
+  bottom: 0;
   position: absolute;
-  right: var(--transition-padding);
-  // top: var(--transition-padding);
-  // width: 40%;
+  right: 0;
+  left: 0;
+  width: initial;
+  height: 100%;
 }
 
 .ch-timeline {
