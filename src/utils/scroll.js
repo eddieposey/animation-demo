@@ -52,12 +52,12 @@ const scrollPin = (element, animation, bottom) => {
   }
 
   const scrubAnimation = () => {
-    if (trackToTop) {
-      animation.seek((timelineBottomReachesTopOfWindow() / 100) * animation.duration())
+    if (trackToTop && animation.duration) {
+      animation.seek((timelineBottomReachesTopOfWindow() / 100) * animation?.duration())
     }
 
-    if (trackFromBottom) {
-      // console.log(timelineBottomLeavesBottomOfWindow())
+    if (trackFromBottom && animation.duration) {
+      animation.seek((timelineBottomLeavesBottomOfWindow() / 100) * animation?.duration())
     }
   }
 
@@ -84,7 +84,7 @@ const scrollDistance = (element, animation, startDistance, endDistance) => {
     return distance
   }
 
-  const scrubAnimation = () => calculatePixelDistance()
+  const scrubAnimation = () => animation.duration ? animation.seek((calculatePixelDistance() / 100) * animation.duration()) : null
   const setAnimationPositionOnLoad = () => scrubAnimation()
   const intersectionObserver = new IntersectionObserver(intersectionCallback.bind(null, setAnimationPositionOnLoad, scrubAnimation), options)
   intersectionObserver.observe(element)
