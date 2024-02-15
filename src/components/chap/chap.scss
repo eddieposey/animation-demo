@@ -11,7 +11,7 @@
   --shrunk-image-height: 255px;
   --timeline-height: 500vh;
   --timeline-positioning: 0;
-  --transition-padding: 50px;
+  --transition-padding: 45px;
   --wrapper-height: 600vh;
 }
 
@@ -69,7 +69,7 @@
 }
 
 .ch-timeline {
-  background: pink;
+  // background: pink;
   height: var(--timeline-height);
   position: relative;
   top: var(--timeline-positioning);
@@ -80,7 +80,6 @@
   bottom: 0;
   box-sizing: border-box;
   margin-top: var(--rail-margin);
-  padding-left: 50px;
   position: relative;
   width: 100%;
   z-index: 2;

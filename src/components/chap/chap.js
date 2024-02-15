@@ -1,6 +1,7 @@
 import { scrollPin, scrollDistance } from '../../utils/scroll'
 import './chap.scss'
 import '../../styles/utils.scss'
+import { scaleBG } from './animations'
 
 const time = '.ch-timeline'
 const deskTime = '.ch-desktop .ch-timeline'
@@ -29,7 +30,7 @@ const enhancedInit = () => {
   if (enhancedScrollHandlersInitiated) return
 
   enhancedChapters.forEach((element) => {
-    scrollPin(element.querySelector(deskTime), () => {}, true)
+    scrollPin(element.querySelector(deskTime), scaleBG(element), true)
     scrollDistance(element.querySelector(deskRail), () => {}, contentRailTopPadding, 0)
     scrollPin(element.querySelector(mobiTime), () => {})
     scrollDistance(element.querySelector(mobiRail), () => {}, 600, 400)

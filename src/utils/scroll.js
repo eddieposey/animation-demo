@@ -53,11 +53,11 @@ const scrollPin = (element, animation, bottom) => {
 
   const scrubAnimation = () => {
     if (trackToTop) {
-      console.log(timelineBottomReachesTopOfWindow())
+      animation.seek((timelineBottomReachesTopOfWindow() / 100) * animation.duration())
     }
 
     if (trackFromBottom) {
-      console.log(timelineBottomLeavesBottomOfWindow())
+      // console.log(timelineBottomLeavesBottomOfWindow())
     }
   }
 
