@@ -14,8 +14,8 @@ const simpleInit = () => {
   const simpleScrollHandlersInitiated = window['simpleChapters']
   const simpleChapters = document.querySelectorAll('[data-type="simple"]')
 
-  if(simpleChapters.length === 0) return
-  if(simpleScrollHandlersInitiated) return
+  if (simpleChapters.length === 0) return
+  if (simpleScrollHandlersInitiated) return
 
   simpleChapters.forEach((element) => scrollPin(element.querySelectorAll(time), () => {}, true))
   window['simpleChapters'] = true
@@ -25,8 +25,8 @@ const enhancedInit = () => {
   const enhancedScrollHandlersInitiated = window['enhancedChapters']
   const enhancedChapers = document.querySelectorAll('[data-type="enhanced"]')
 
-  if(enhancedChapers.length === 0) return
-  if(enhancedScrollHandlersInitiated) return
+  if (enhancedChapers.length === 0) return
+  if (enhancedScrollHandlersInitiated) return
 
   enhancedChapers.forEach((element) => {
     scrollPin(element.querySelector(deskTime), () => {}, true)
@@ -43,8 +43,8 @@ const plusInit = () => {
   const plusScrollHandlersInitiated = window['plusChapers']
   const plusChapters = document.querySelectorAll('[data-type="plus"]')
 
-  if(plusChapters.length === 0) return
-  if(plusScrollHandlersInitiated) return
+  if (plusChapters.length === 0) return
+  if (plusScrollHandlersInitiated) return
 
   plusChapters.forEach((element) => {
     scrollPin(element.querySelector(deskTime), () => {}, true)

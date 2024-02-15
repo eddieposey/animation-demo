@@ -42,7 +42,6 @@
 
 .ch-wrap {
   background: beige;
-  // min-height: var(--wrapper-height);
   position: relative;
   width: 100%;
 }
@@ -81,7 +80,7 @@
   bottom: 0;
   box-sizing: border-box;
   margin-top: var(--rail-margin);
-  padding-left: 2rem;
+  padding-left: 50px;
   position: relative;
   width: 100%;
   z-index: 2;
