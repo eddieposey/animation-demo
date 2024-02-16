@@ -8,7 +8,7 @@ const container = document.querySelector('[data-component="chapters"]')
 const railPadding = getComputedStyle(container).getPropertyValue('--transition-padding').replace('px', '')
 const options = { paused: true, ease: 'Power0.easeNone' }
 
-const railFade = (element) => {
+const scrollFade = (element) => {
   const railTimeline = gsap.timeline(options)
 
   const start = { opacity: 0 }
@@ -46,7 +46,7 @@ const shrinkBG = (element, forwards) => {
   return shrink
 }
 
-const fade = (element, forwards) => {
+const triggerFade = (element, forwards) => {
   const fade = gsap.timeline(options)
   const start = { opacity: 0 }
   const end = { opacity: 1 }
@@ -62,4 +62,4 @@ const fade = (element, forwards) => {
   return fade
 }
 
-export { scaleBG, railFade, shrinkBG, fade }
+export { scaleBG, scrollFade, shrinkBG, triggerFade }

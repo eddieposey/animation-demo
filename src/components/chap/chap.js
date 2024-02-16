@@ -1,6 +1,6 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js'
-import { scaleBG, railFade, shrinkBG, fade } from './animations'
+import { scaleBG, scrollFade, shrinkBG, triggerFade } from './animations'
 import { scrollPin, scrollDistance, scrollTrigger } from '../../utils/scroll'
 import './chap.scss'
 import '../../styles/utils.scss'
@@ -36,7 +36,7 @@ const enhancedInit = () => {
 
   enhancedChapters.forEach((element) => {
     scrollPin(element.querySelector(deskTime), scaleBG(element.querySelector(deskAnim)), true)
-    scrollDistance(element.querySelector(deskRail), railFade(element.querySelector(deskRail)), 800, 0)
+    scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail)), 800, 0)
     scrollPin(element.querySelector(mobiTime), () => {}) // typewriter
 
     ScrollTrigger.create({
@@ -45,11 +45,11 @@ const enhancedInit = () => {
       markers: true,
       onEnter: () => {
         shrinkBG(element.querySelector(mobiAnim), true).play()
-        fade(element.querySelector(mobiRail), true).play()
+        triggerFade(element.querySelector(mobiRail), true).play()
       },
       onLeaveBack: () => {
         shrinkBG(element.querySelector(mobiAnim), false).play()
-        fade(element.querySelector(mobiRail), false).play()
+        triggerFade(element.querySelector(mobiRail), false).play()
       }
     });
   })
@@ -66,7 +66,7 @@ const plusInit = () => {
 
   plusChapters.forEach((element) => {
     scrollPin(element.querySelector(deskTime), () => {}, true)
-    scrollDistance(element.querySelector(deskRail), railFade(element.querySelector(deskRail)), 800, 0)
+    scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail)), 800, 0)
     scrollPin(element.querySelector(mobiTime), () => {})
     scrollDistance(element.querySelector(mobiRail), () => {}, 600, 400)
     scrollDistance(element.querySelector(mobiRail), () => {}, 500, 400)

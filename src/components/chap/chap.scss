@@ -88,7 +88,8 @@
 }
 
 .ch-items {
-  background: lightseagreen;
+  // background: lightseagreen;
+  padding-left: var(--transition-padding);
   box-sizing: border-box;
   padding-top: var(--transition-padding);
   width: 50%;
@@ -115,3 +116,35 @@
 /////////////////////////////
 // static layout
 /////////////////////////////
+
+.ch-static {
+  align-items: center;
+  background: beige;
+  display: flex;
+  height: 100vh;
+  position: relative;
+}
+
+.ch-static-rail {
+  display: flex;
+}
+
+.ch-static-left,
+.ch-static-right {
+  flex: 1;
+}
+
+.ch-static-left {
+  height: 300vh;
+}
+
+.ch-static-right {
+  position: sticky;
+  top: 0;
+}
+
+.test {
+  height: 50vh;
+  width: 100%;
+  background: pink;
+}
