@@ -13,6 +13,11 @@
   --timeline-positioning: 0;
   --transition-padding: 45px;
   --wrapper-height: 600vh;
+  --show-rail: flex;
+}
+
+[data-type="static-simple"] {
+  --show-rail: none;
 }
 
 .ch-desktop {
@@ -88,7 +93,7 @@
 }
 
 .ch-items {
-  // background: lightseagreen;
+  background: lightseagreen;
   padding-left: var(--transition-padding);
   box-sizing: border-box;
   padding-top: var(--transition-padding);
@@ -126,25 +131,32 @@
 }
 
 .ch-static-rail {
-  display: flex;
-}
-
-.ch-static-left,
-.ch-static-right {
-  flex: 1;
+  display: var(--show-rail);
 }
 
 .ch-static-left {
-  height: 300vh;
+  background: lightcoral;
+  width: 100%;
 }
 
 .ch-static-right {
+  display: none;
+  background: lavender;
+  padding: var(--transition-padding);
+  height: 50vh;
   position: sticky;
-  top: 0;
+  width: 50%;
+  top: var(--transition-padding);
+  margin: var(--transition-padding);
 }
 
-.test {
-  height: 50vh;
-  width: 100%;
-  background: pink;
+@include BreakPoint(md) {
+  .ch-static-left {
+    width: 50%;
+    min-height: 100vh;
+  }
+
+  .ch-static-right {
+    display: block;
+  }
 }
