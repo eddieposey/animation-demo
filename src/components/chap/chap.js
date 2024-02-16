@@ -5,7 +5,7 @@ import { scrollPin, scrollDistance, scrollTrigger } from '../../utils/scroll'
 import './chap.scss'
 import '../../styles/utils.scss'
 
-const time = '.ch-timeline'
+const timeline = '.ch-timeline'
 const deskTime = '.ch-desktop .ch-timeline'
 const deskRail = '.ch-desktop .ch-rail'
 const deskAnim = '.ch-desktop .ch-anim'
@@ -22,7 +22,8 @@ const simpleInit = () => {
   if (simpleChapters.length === 0) return
   if (simpleScrollHandlersInitiated) return
 
-  simpleChapters.forEach((element) => scrollPin(element.querySelectorAll(time), () => {}, true))
+  // typewriter effect goes here
+  simpleChapters.forEach((element) => scrollPin(element.querySelector(timeline), scaleBG(element.querySelector('.ch-anim'))))
 
   window['simpleChapters'] = true
 }
@@ -35,9 +36,11 @@ const enhancedInit = () => {
   if (enhancedScrollHandlersInitiated) return
 
   enhancedChapters.forEach((element) => {
+    // typewriter effect goes here
     scrollPin(element.querySelector(deskTime), scaleBG(element.querySelector(deskAnim)), true)
     scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail)), 800, 0)
-    scrollPin(element.querySelector(mobiTime), () => {}) // typewriter
+    // typewriter effect goes here
+    scrollPin(element.querySelector(mobiTime), () => {})
 
     ScrollTrigger.create({
       trigger: element.querySelector(mobiRail),

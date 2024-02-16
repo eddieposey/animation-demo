@@ -16,6 +16,11 @@
   --show-rail: flex;
 }
 
+[data-type="simple"] {
+  --show-rail: none;
+  --timeline-positioning: initial;
+}
+
 [data-type="static-simple"] {
   --show-rail: none;
 }
@@ -42,7 +47,7 @@
 
 
 /////////////////////////////
-// enhanced and plus layout
+// simple, enhanced and plus layout
 /////////////////////////////
 
 .ch-wrap {
@@ -75,7 +80,7 @@
 }
 
 .ch-timeline {
-  // background: pink;
+  background: pink;
   height: var(--timeline-height);
   position: relative;
   top: var(--timeline-positioning);
