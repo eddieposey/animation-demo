@@ -116,6 +116,13 @@
 
 .ch-line {
   display: flex;
+  align-items: center;
+}
+
+.ch-cursor {
+  height: 15px;
+  width: 15px;
+  background: black;
 }
 
 @include BreakPoint(md) {

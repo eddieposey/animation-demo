@@ -75,7 +75,6 @@ const plusInit = () => {
     const deskAnimation = element.querySelector(deskAnim)
     const desktopLines = element.querySelectorAll(deskLett)
 
-
     scrollPin(element.querySelector(deskTime), plusTimeline(desktopLines, deskBG, deskAnimation), true)
     scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail), false, true), 800, 0)
 

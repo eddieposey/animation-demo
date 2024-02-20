@@ -60,6 +60,14 @@ const triggerFade = (element, forwards) => {
   return fadeTimeline
 }
 
+const createCursor = (textElement) => {
+  const cursorDiv = document.createElement('div')
+  cursorDiv.className = 'ch-cursor'
+  cursorDiv.classList.add('ch-cursor')
+  textElement.insertAdjacentElement('beforeend', cursorDiv)
+  return cursorDiv
+}
+
 const typewriter = (lines) => {
   const typewriterTimeline = gsap.timeline()
 
@@ -70,18 +78,22 @@ const typewriter = (lines) => {
     const end = { display: 'block' }
 
     line.innerHTML = letters
+
+    createCursor(line)
+
     const wrappedLetters = Array.from(line.querySelectorAll('span'))
     wrappedLetters.forEach(letter => letterTimeline.fromTo(letter, start, end))
     typewriterTimeline.add(letterTimeline)
   })
 
+  return typewriterTimeline
 }
 
 const plusTimeline = (lines, bg, stage) => {
-  typewriter(lines)
+  const tw = typewriter(lines)
   const fade = scrollFade(bg, true)
   const scale = scaleBG(stage)
-  return gsap.timeline(options).add(fade).add(scale)
+  return gsap.timeline(options).add(tw).add(fade).add(scale)
 }
 
 export { scaleBG, scrollFade, shrinkBG, triggerFade, plusTimeline }
