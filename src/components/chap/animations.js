@@ -60,7 +60,25 @@ const triggerFade = (element, forwards) => {
   return fadeTimeline
 }
 
-const plusTimeline = (bg, stage) => {
+const typewriter = (lines) => {
+  const typewriterTimeline = gsap.timeline()
+
+  lines.forEach(line => {
+    const letters = line.innerText.split('').map(letter => letter !== ' ' ? `<span>${letter}</span>` : '&nbsp;').join('')
+    const letterTimeline = gsap.timeline()
+    const start = { display: 'none' }
+    const end = { display: 'block' }
+
+    line.innerHTML = letters
+    const wrappedLetters = Array.from(line.querySelectorAll('span'))
+    wrappedLetters.forEach(letter => letterTimeline.fromTo(letter, start, end))
+    typewriterTimeline.add(letterTimeline)
+  })
+
+}
+
+const plusTimeline = (lines, bg, stage) => {
+  typewriter(lines)
   const fade = scrollFade(bg, true)
   const scale = scaleBG(stage)
   return gsap.timeline(options).add(fade).add(scale)

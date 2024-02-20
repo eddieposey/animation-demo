@@ -102,7 +102,7 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  line-height: 25px;
+  line-height: 50px;
   z-index: 1;
 }
 
@@ -112,6 +112,10 @@
   width: 100%;
   background: red;
   top: 0;
+}
+
+.ch-line {
+  display: flex;
 }
 
 @include BreakPoint(md) {

@@ -10,6 +10,8 @@ const deskTime = '.ch-desktop .ch-timeline'
 const deskRail = '.ch-desktop .ch-rail'
 const deskAnim = '.ch-desktop .ch-anim'
 const deskPlus = '.ch-desktop .ch-plus-bg'
+const deskLett = '.ch-desktop .ch-typewriter p'
+
 const mobiTime = '.ch-mobile .ch-timeline'
 const mobiRail = '.ch-mobile .ch-rail'
 const mobiAnim = '.ch-mobile .ch-anim'
@@ -34,7 +36,6 @@ const enhancedInit = () => {
   const enhancedScrollHandlersInitiated = window['enhancedChapters']
   const enhancedChapters = document.querySelectorAll('[data-type="enhanced"]')
 
-  // checks to prevent multiple scroll handlers being added
   if (enhancedChapters.length === 0) return
   if (enhancedScrollHandlersInitiated) return
 
@@ -72,8 +73,10 @@ const plusInit = () => {
   plusChapters.forEach((element) => {
     const deskBG = element.querySelector(deskPlus)
     const deskAnimation = element.querySelector(deskAnim)
+    const desktopLines = element.querySelectorAll(deskLett)
 
-    scrollPin(element.querySelector(deskTime), plusTimeline(deskBG, deskAnimation), true)
+
+    scrollPin(element.querySelector(deskTime), plusTimeline(desktopLines, deskBG, deskAnimation), true)
     scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail), false, true), 800, 0)
 
     scrollPin(element.querySelector(mobiTime), () => {})
