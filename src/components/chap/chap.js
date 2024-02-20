@@ -1,6 +1,6 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js'
-import { scaleBG, scrollFade, shrinkBG, triggerFade } from './animations'
+import { scaleBG, scrollFade, shrinkBG, triggerFade, plusTimeline } from './animations'
 import { scrollPin, scrollDistance, scrollTrigger } from '../../utils/scroll'
 import './chap.scss'
 import '../../styles/utils.scss'
@@ -9,6 +9,7 @@ const timeline = '.ch-timeline'
 const deskTime = '.ch-desktop .ch-timeline'
 const deskRail = '.ch-desktop .ch-rail'
 const deskAnim = '.ch-desktop .ch-anim'
+const deskPlus = '.ch-desktop .ch-plus-bg'
 const mobiTime = '.ch-mobile .ch-timeline'
 const mobiRail = '.ch-mobile .ch-rail'
 const mobiAnim = '.ch-mobile .ch-anim'
@@ -19,11 +20,9 @@ const simpleInit = () => {
   const simpleScrollHandlersInitiated = window['simpleChapters']
   const simpleChapters = document.querySelectorAll('[data-type="simple"]')
 
-  // checks to prevent multiple scroll handlers being added
   if (simpleChapters.length === 0) return
   if (simpleScrollHandlersInitiated) return
 
-  // desktop and mobile animations
   simpleChapters.forEach((element) => scrollPin(element.querySelector(timeline), scaleBG(element.querySelector('.ch-anim'))))
 
   window['simpleChapters'] = true
@@ -39,11 +38,9 @@ const enhancedInit = () => {
 
   enhancedChapters.forEach((element) => {
 
-    // typewriter effect goes here
     scrollPin(element.querySelector(deskTime), scaleBG(element.querySelector(deskAnim)), true)
     scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail)), 800, 0)
 
-    // mobile animations
     scrollPin(element.querySelector(mobiTime), () => {})
     ScrollTrigger.create({
       trigger: element.querySelector(mobiRail),
@@ -67,19 +64,17 @@ const plusInit = () => {
   const plusScrollHandlersInitiated = window['plusChapers']
   const plusChapters = document.querySelectorAll('[data-type="plus"]')
 
-  // checks to prevent multiple scroll handlers being added
   if (plusChapters.length === 0) return
   if (plusScrollHandlersInitiated) return
 
   plusChapters.forEach((element) => {
+    const deskBG = element.querySelector(deskPlus)
+    const deskAnimation = element.querySelector(deskAnim)
 
-    // typewriter effect goes here
-    scrollPin(element.querySelector(deskTime), scaleBG(element.querySelector(deskAnim)), true)
-
-    // fade in effect goes here
+    scrollPin(element.querySelector(deskTime), plusTimeline(deskBG, deskAnimation), true)
     scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail)), 800, 0)
-    scrollPin(element.querySelector(mobiTime), () => {})
 
+    scrollPin(element.querySelector(mobiTime), () => {})
     ScrollTrigger.create({
       trigger: element.querySelector(mobiRail),
       start: 'top 500px',
@@ -93,7 +88,6 @@ const plusInit = () => {
         triggerFade(element.querySelector(mobiRail), false).play()
       }
     });
-
   })
 
   window['plusChapers'] = true

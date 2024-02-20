@@ -9,7 +9,7 @@ const railPadding = getComputedStyle(container).getPropertyValue('--transition-p
 const options = { paused: true, ease: 'Power0.easeNone' }
 
 const scrollFade = (element) => {
-  const railTimeline = gsap.timeline(options)
+  const railTimeline = gsap.timeline()
   const start = { opacity: 0 }
   const end = { opacity: 1 }
 
@@ -19,7 +19,7 @@ const scrollFade = (element) => {
 }
 
 const scaleBG = (element) => {
-  const scaleTimeline = gsap.timeline(options)
+  const scaleTimeline = gsap.timeline()
   const start = {  width: '100vw', top: 0, bottom: 0, right: 0, left: 'initial', height: 'initial' }
   const end = { duration: 4, width: `calc(50vw - ${railPadding * 2}px)`, top: railPadding, bottom: railPadding, right: railPadding }
 
@@ -29,7 +29,7 @@ const scaleBG = (element) => {
 }
 
 const shrinkBG = (element, forwards) => {
-  const shrinkTimeline = gsap.timeline(options)
+  const shrinkTimeline = gsap.timeline()
   const start = { height: '100%', left: 0, right: 0, bottom: 0 }
   const end = { height: '255px', left: railPadding, right: railPadding }
 
@@ -45,7 +45,7 @@ const shrinkBG = (element, forwards) => {
 }
 
 const triggerFade = (element, forwards) => {
-  const fadeTimeline = gsap.timeline(options)
+  const fadeTimeline = gsap.timeline()
   const start = { opacity: 0 }
   const end = { opacity: 1 }
 
@@ -60,8 +60,10 @@ const triggerFade = (element, forwards) => {
   return fadeTimeline
 }
 
-const simpleTimeline = () => {
-  
+const plusTimeline = (bg, stage) => {
+  const fade = scrollFade(bg)
+  const scale = scaleBG(stage)
+  return gsap.timeline(options).add(fade).add(scale)
 }
 
-export { scaleBG, scrollFade, shrinkBG, triggerFade }
+export { scaleBG, scrollFade, shrinkBG, triggerFade, plusTimeline }

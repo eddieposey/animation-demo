@@ -1,8 +1,8 @@
 @import '../../styles/breakpoints.scss';
 
-/////////////////////////////
+///////////////////////////////////
 // variables
-/////////////////////////////
+///////////////////////////////////
 
 [data-component="chapters"] {
   --animation-viewport: 100vh;
@@ -37,9 +37,9 @@
   display: block;
 }
 
-/////////////////////////////
+///////////////////////////////////
 // simple, enhanced and plus layout
-/////////////////////////////
+///////////////////////////////////
 
 .ch-wrap {
   background: beige;
@@ -96,6 +96,24 @@
   width: 50%;
 }
 
+.ch-typewriter {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  line-height: 25px;
+  z-index: 1;
+}
+
+.ch-plus-bg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: red;
+  top: 0;
+}
+
 @include BreakPoint(md) {
   .ch-mobile {
     display: none;
@@ -114,9 +132,9 @@
   }
 }
 
-/////////////////////////////
+///////////////////////////////////
 // static and aem layout
-/////////////////////////////
+///////////////////////////////////
 
 .ch-static {
   align-items: center;
@@ -157,9 +175,9 @@
   }
 }
 
-/////////////////////////////
+///////////////////////////////////
 // themes
-/////////////////////////////
+///////////////////////////////////
 
 [data-component="chapters"].bg-tan {
 
