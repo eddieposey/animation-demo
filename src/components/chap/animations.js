@@ -60,4 +60,8 @@ const triggerFade = (element, forwards) => {
   return fadeTimeline
 }
 
+const simpleTimeline = () => {
+  
+}
+
 export { scaleBG, scrollFade, shrinkBG, triggerFade }

@@ -36,6 +36,7 @@ const enhancedInit = () => {
   if (enhancedScrollHandlersInitiated) return
 
   enhancedChapters.forEach((element) => {
+
     // typewriter effect goes here
     scrollPin(element.querySelector(deskTime), scaleBG(element.querySelector(deskAnim)), true)
     scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail)), 800, 0)
@@ -68,11 +69,30 @@ const plusInit = () => {
   if (plusScrollHandlersInitiated) return
 
   plusChapters.forEach((element) => {
-    scrollPin(element.querySelector(deskTime), () => {}, true)
+
+    // typewriter effect goes here
+    scrollPin(element.querySelector(deskTime), scaleBG(element.querySelector(deskAnim)), true)
+
+    // fade in effect goes here
     scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail)), 800, 0)
+
+    // typewriter effect goes here
     scrollPin(element.querySelector(mobiTime), () => {})
-    scrollDistance(element.querySelector(mobiRail), () => {}, 600, 400)
-    scrollDistance(element.querySelector(mobiRail), () => {}, 500, 400)
+
+    ScrollTrigger.create({
+      trigger: element.querySelector(mobiRail),
+      start: 'top 500px',
+      markers: true,
+      onEnter: () => {
+        shrinkBG(element.querySelector(mobiAnim), true).play()
+        triggerFade(element.querySelector(mobiRail), true).play()
+      },
+      onLeaveBack: () => {
+        shrinkBG(element.querySelector(mobiAnim), false).play()
+        triggerFade(element.querySelector(mobiRail), false).play()
+      }
+    });
+
   })
 
   window['plusChapers'] = true
