@@ -38,15 +38,6 @@
 }
 
 /////////////////////////////
-// themes
-/////////////////////////////
-
-[data-component="chapters"].bg-tan {
-
-}
-
-
-/////////////////////////////
 // simple, enhanced and plus layout
 /////////////////////////////
 
@@ -124,7 +115,7 @@
 }
 
 /////////////////////////////
-// static layout
+// static and aem layout
 /////////////////////////////
 
 .ch-static {
@@ -164,4 +155,12 @@
   .ch-static-right {
     display: block;
   }
+}
+
+/////////////////////////////
+// themes
+/////////////////////////////
+
+[data-component="chapters"].bg-tan {
+
 }
