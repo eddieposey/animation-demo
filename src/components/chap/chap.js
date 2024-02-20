@@ -23,7 +23,9 @@ const simpleInit = () => {
   if (simpleChapters.length === 0) return
   if (simpleScrollHandlersInitiated) return
 
-  simpleChapters.forEach((element) => scrollPin(element.querySelector(timeline), scaleBG(element.querySelector('.ch-anim'))))
+  simpleChapters.forEach((element) => {
+    scrollPin(element.querySelector(timeline), scaleBG(element.querySelector('.ch-anim')))
+  })
 
   window['simpleChapters'] = true
 }
@@ -72,7 +74,7 @@ const plusInit = () => {
     const deskAnimation = element.querySelector(deskAnim)
 
     scrollPin(element.querySelector(deskTime), plusTimeline(deskBG, deskAnimation), true)
-    scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail)), 800, 0)
+    scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail), false, true), 800, 0)
 
     scrollPin(element.querySelector(mobiTime), () => {})
     ScrollTrigger.create({
