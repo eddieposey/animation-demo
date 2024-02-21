@@ -76,18 +76,24 @@ const typewriter = (lines) => {
   const typewriterTimeline = gsap.timeline()
 
   lines.forEach(line => {
-    const letters = line.innerText.split('').map(letter => letter !== ' ' ? `<span>${letter}</span>` : '<span>&nbsp;</span>').join('')
+    const cursorInTimeline = gsap.timeline()
+    const cursorOutTimeline = gsap.timeline()
     const letterTimeline = gsap.timeline()
+    const letters = line.innerText.split('').map(letter => letter !== ' ' ? `<span>${letter}</span>` : '<span>&nbsp;</span>').join('')
     const start = { display: 'none' }
     const end = { display: 'block' }
 
     line.innerHTML = letters
 
-    createCursor(line)
+    const cursor = createCursor(line)
+
+    cursorInTimeline.fromTo(cursor, { opacity: 0 }, { opacity: 1 })
+    cursorOutTimeline.to(cursor, { opacity: 0 })
 
     const wrappedLetters = Array.from(line.querySelectorAll('span'))
     wrappedLetters.forEach(letter => letterTimeline.fromTo(letter, start, end))
-    typewriterTimeline.add(letterTimeline)
+
+    typewriterTimeline.add(cursorInTimeline).add(letterTimeline).add(cursorOutTimeline)
   })
 
   return typewriterTimeline
