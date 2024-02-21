@@ -13,9 +13,13 @@ const scrollFade = (element, isTimeline, reverse) => {
   const visible = { opacity: 0 }
   const invisible = { opacity: 1 }
 
-  return reverse ?
-  railTimeline.fromTo(element, visible, invisible) :
-  railTimeline.fromTo(element, invisible, visible)
+  if(reverse) {
+    return railTimeline.fromTo(element, visible, invisible)
+  }
+
+  if(!reverse) {
+    return railTimeline.fromTo(element, invisible, visible)
+  }
 }
 
 const scaleBG = (element) => {
@@ -89,6 +93,11 @@ const typewriter = (lines) => {
   return typewriterTimeline
 }
 
+const simpleTimeline = (lines) => {
+  const tw = typewriter(lines).duration(2).delay(0.5)
+  return gsap.timeline(options).add(tw)
+}
+
 const enhancedTimeline = (lines, stage, type, mobile) => {
   const tw = typewriter(lines).duration(2).delay(0.5)
   const fade = scrollFade(type, true).duration(2)
@@ -118,4 +127,4 @@ const plusTimeline = (lines, bg, stage, type, mobile) => {
   }
 }
 
-export { scaleBG, scrollFade, shrinkBG, triggerFade, enhancedTimeline, plusTimeline }
+export { scaleBG, scrollFade, shrinkBG, triggerFade, simpleTimeline, enhancedTimeline, plusTimeline }
