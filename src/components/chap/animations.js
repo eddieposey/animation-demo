@@ -89,19 +89,33 @@ const typewriter = (lines) => {
   return typewriterTimeline
 }
 
-const enhancedTimeline = (lines, stage, type) => {
-  const tw = typewriter(lines).delay(0.5)
-  const fade = scrollFade(type, true).duration(0.5)
-  const scale = scaleBG(stage)
-  return gsap.timeline(options).add(tw).add(fade).add(scale)
+const enhancedTimeline = (lines, stage, type, mobile) => {
+  const tw = typewriter(lines).duration(2).delay(0.5)
+  const fade = scrollFade(type, true).duration(2)
+
+  if(mobile) {
+    return gsap.timeline(options).add(tw).add(fade)
+  }
+
+  if(!mobile) {
+    const scale = scaleBG(stage).duration(2)
+    return gsap.timeline(options).add(tw).add(fade).add(scale)
+  }
 }
 
-const plusTimeline = (lines, bg, stage, type) => {
+const plusTimeline = (lines, bg, stage, type, mobile) => {
   const tw = typewriter(lines).duration(2).delay(0.5)
   const fade = scrollFade(bg, true).duration(2)
   const fade2 = scrollFade(type, true).duration(2)
-  const scale = scaleBG(stage).duration(1)
-  return gsap.timeline(options).add(tw).add(fade).add(fade2).add(scale)
+
+  if(mobile) {
+    return gsap.timeline(options).add(tw).add(fade).add(fade2)
+  }
+
+  if(!mobile) {
+    const scale = scaleBG(stage).duration(1)
+    return gsap.timeline(options).add(tw).add(fade).add(fade2).add(scale)
+  }
 }
 
 export { scaleBG, scrollFade, shrinkBG, triggerFade, enhancedTimeline, plusTimeline }

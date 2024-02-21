@@ -107,13 +107,14 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background: red;
+  background: lightsalmon;
   top: 0;
 }
 
 .ch-line {
   display: flex;
   align-items: center;
+  padding-bottom: 20px;
 }
 
 .ch-cursor {
