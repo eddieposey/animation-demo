@@ -94,8 +94,9 @@ const typewriter = (lines) => {
 }
 
 const simpleTimeline = (lines) => {
-  const tw = typewriter(lines).duration(2).delay(0.5)
-  return gsap.timeline(options).add(tw)
+  const tw = typewriter(lines).delay(0.5)
+  const space = gsap.timeline().delay(2)
+  return gsap.timeline(options).add(tw).add(space)
 }
 
 const enhancedTimeline = (lines, stage, type, mobile) => {

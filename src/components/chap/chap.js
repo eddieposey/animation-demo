@@ -1,11 +1,13 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js'
-import { scaleBG, scrollFade, shrinkBG, triggerFade, enhancedTimeline, plusTimeline } from './animations'
+import { scaleBG, scrollFade, shrinkBG, triggerFade, simpleTimeline, enhancedTimeline, plusTimeline } from './animations'
 import { scrollPin, scrollDistance, scrollTrigger } from '../../utils/scroll'
 import './chap.scss'
 import '../../styles/utils.scss'
 
 const timeline = '.ch-timeline'
+const typewriter = '.ch-typewriter p'
+
 const deskTime = '.ch-desktop .ch-timeline'
 const deskRail = '.ch-desktop .ch-rail'
 const deskAnim = '.ch-desktop .ch-anim'
@@ -31,7 +33,9 @@ const simpleInit = () => {
 
   // desktop and mobile animations
   simpleChapters.forEach((element) => {
-    scrollPin(element.querySelector(timeline), scaleBG(element.querySelector('.ch-anim')))
+    const time = element.querySelector(timeline)
+    const lines = element.querySelectorAll(typewriter)
+    scrollPin(time, simpleTimeline(lines))
   })
 
   window['simpleChapters'] = true
@@ -45,19 +49,19 @@ const enhancedInit = () => {
   if (enhancedScrollHandlersInitiated) return
 
   enhancedChapters.forEach((element) => {
+    // desktop animations
     const deskAnimation = element.querySelector(deskAnim)
     const desktopLines = element.querySelectorAll(deskLett)
     const desktopTypewriter = element.querySelectorAll(deskType)
 
-    const mobiAnimation = element.querySelector(mobiAnim)
-    const mobiLines = element.querySelectorAll(mobiLett)
-    const mobiTypewriter = element.querySelectorAll(mobiType)
-
-    // desktop animations
     scrollPin(element.querySelector(deskTime), enhancedTimeline(desktopLines, deskAnimation, desktopTypewriter, false), true)
     scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail), false, true), 800, 0)
 
     // mobile animations
+    const mobiAnimation = element.querySelector(mobiAnim)
+    const mobiLines = element.querySelectorAll(mobiLett)
+    const mobiTypewriter = element.querySelectorAll(mobiType)
+
     scrollPin(element.querySelector(mobiTime), enhancedTimeline(mobiLines, mobiAnimation, mobiTypewriter, true))
 
     ScrollTrigger.create({
@@ -85,21 +89,21 @@ const plusInit = () => {
   if (plusScrollHandlersInitiated) return
 
   plusChapters.forEach((element) => {
+    // desktop animations
     const deskBG = element.querySelector(deskPlus)
     const deskAnimation = element.querySelector(deskAnim)
     const desktopLines = element.querySelectorAll(deskLett)
     const desktopTypewriter = element.querySelectorAll(deskType)
 
+    scrollPin(element.querySelector(deskTime), plusTimeline(desktopLines, deskBG, deskAnimation, desktopTypewriter), true)
+    scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail), false, true), 800, 0)
+
+    // mobile animations
     const mobiBG = element.querySelector(mobiPlus)
     const mobiAnimation = element.querySelector(mobiAnim)
     const mobiLines = element.querySelectorAll(mobiLett)
     const mobiTypewriter = element.querySelectorAll(mobiType)
 
-    // desktop animations
-    scrollPin(element.querySelector(deskTime), plusTimeline(desktopLines, deskBG, deskAnimation, desktopTypewriter), true)
-    scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail), false, true), 800, 0)
-
-    // mobile animations
     scrollPin(element.querySelector(mobiTime), plusTimeline(mobiLines, mobiBG, mobiAnimation, mobiTypewriter, true))
 
     ScrollTrigger.create({
