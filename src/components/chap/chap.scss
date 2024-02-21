@@ -155,6 +155,7 @@
 
 .ch-static-rail {
   display: var(--show-rail);
+  margin-top: var(--rail-margin);
 }
 
 .ch-static-left {
@@ -182,6 +183,11 @@
   .ch-static-right {
     display: block;
   }
+
+  .ch-static-rail {
+    padding-left: var(--transition-padding);
+  }
+
 }
 
 ///////////////////////////////////
