@@ -10,6 +10,7 @@ const deskTime = '.ch-desktop .ch-timeline'
 const deskRail = '.ch-desktop .ch-rail'
 const deskAnim = '.ch-desktop .ch-anim'
 const deskPlus = '.ch-desktop .ch-plus-bg'
+const deskType = '.ch-desktop .ch-typewriter'
 const deskLett = '.ch-desktop .ch-typewriter p'
 
 const mobiTime = '.ch-mobile .ch-timeline'
@@ -40,15 +41,18 @@ const enhancedInit = () => {
   if (enhancedScrollHandlersInitiated) return
 
   enhancedChapters.forEach((element) => {
+    const deskBG = element.querySelector(deskPlus)
+    const deskAnimation = element.querySelector(deskAnim)
+    const desktopLines = element.querySelectorAll(deskLett)
+    const desktopTypewriter = element.querySelectorAll(deskType)
 
-    scrollPin(element.querySelector(deskTime), scaleBG(element.querySelector(deskAnim)), true)
-    scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail)), 800, 0)
+    scrollPin(element.querySelector(deskTime), plusTimeline(desktopLines, deskBG, deskAnimation, desktopTypewriter), true)
+    scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail), false, true), 800, 0)
 
     scrollPin(element.querySelector(mobiTime), () => {})
     ScrollTrigger.create({
       trigger: element.querySelector(mobiRail),
       start: 'top 500px',
-      markers: true,
       onEnter: () => {
         shrinkBG(element.querySelector(mobiAnim), true).play()
         triggerFade(element.querySelector(mobiRail), true).play()
@@ -74,15 +78,15 @@ const plusInit = () => {
     const deskBG = element.querySelector(deskPlus)
     const deskAnimation = element.querySelector(deskAnim)
     const desktopLines = element.querySelectorAll(deskLett)
+    const desktopTypewriter = element.querySelectorAll(deskType)
 
-    scrollPin(element.querySelector(deskTime), plusTimeline(desktopLines, deskBG, deskAnimation), true)
+    scrollPin(element.querySelector(deskTime), plusTimeline(desktopLines, deskBG, deskAnimation, desktopTypewriter), true)
     scrollDistance(element.querySelector(deskRail), scrollFade(element.querySelector(deskRail), false, true), 800, 0)
 
     scrollPin(element.querySelector(mobiTime), () => {})
     ScrollTrigger.create({
       trigger: element.querySelector(mobiRail),
       start: 'top 500px',
-      markers: true,
       onEnter: () => {
         shrinkBG(element.querySelector(mobiAnim), true).play()
         triggerFade(element.querySelector(mobiRail), true).play()

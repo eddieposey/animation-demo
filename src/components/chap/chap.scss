@@ -9,7 +9,7 @@
   --rail-margin: 0;
   --rail-minimum-height: 100vh;
   --shrunk-image-height: 255px;
-  --timeline-height: 325vh;
+  --timeline-height: 800vh;
   --timeline-positioning: 0;
   --transition-padding: 45px;
   --wrapper-height: 600vh;
@@ -49,11 +49,9 @@
 
 .ch-stage {
   align-items: center;
-  background: lightgrey;
   display: flex;
   height: var(--animation-viewport);
   justify-content: center;
-  opacity: 0.5;
   position: sticky;
   top: 0;
   width: 100%;
@@ -68,10 +66,11 @@
   left: 0;
   width: initial;
   height: 100%;
+  will-change: width;
 }
 
 .ch-timeline {
-  background: pink;
+  // background: pink;
   height: var(--timeline-height);
   position: relative;
   top: var(--timeline-positioning);
@@ -85,11 +84,10 @@
   position: relative;
   width: 100%;
   opacity: 0;
-  z-index: 2;
 }
 
 .ch-items {
-  background: lightseagreen;
+  // background: lightseagreen;
   padding-left: var(--transition-padding);
   box-sizing: border-box;
   padding-top: var(--transition-padding);
@@ -102,7 +100,6 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  line-height: 50px;
   z-index: 1;
 }
 

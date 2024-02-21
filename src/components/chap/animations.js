@@ -72,7 +72,7 @@ const typewriter = (lines) => {
   const typewriterTimeline = gsap.timeline()
 
   lines.forEach(line => {
-    const letters = line.innerText.split('').map(letter => letter !== ' ' ? `<span>${letter}</span>` : '&nbsp;').join('')
+    const letters = line.innerText.split('').map(letter => letter !== ' ' ? `<span>${letter}</span>` : '<span>&nbsp;</span>').join('')
     const letterTimeline = gsap.timeline()
     const start = { display: 'none' }
     const end = { display: 'block' }
@@ -89,11 +89,19 @@ const typewriter = (lines) => {
   return typewriterTimeline
 }
 
-const plusTimeline = (lines, bg, stage) => {
-  const tw = typewriter(lines)
-  const fade = scrollFade(bg, true)
+const enhancedTimeline = (lines, stage, type) => {
+  const tw = typewriter(lines).delay(0.5)
+  const fade = scrollFade(type, true).duration(0.5)
   const scale = scaleBG(stage)
   return gsap.timeline(options).add(tw).add(fade).add(scale)
 }
 
-export { scaleBG, scrollFade, shrinkBG, triggerFade, plusTimeline }
+const plusTimeline = (lines, bg, stage, type) => {
+  const tw = typewriter(lines).duration(2).delay(0.5)
+  const fade = scrollFade(bg, true).duration(2)
+  const fade2 = scrollFade(type, true).duration(2)
+  const scale = scaleBG(stage).duration(1)
+  return gsap.timeline(options).add(tw).add(fade).add(fade2).add(scale)
+}
+
+export { scaleBG, scrollFade, shrinkBG, triggerFade, enhancedTimeline, plusTimeline }
