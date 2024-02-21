@@ -166,7 +166,7 @@
   display: none;
   background: lavender;
   padding: var(--transition-padding);
-  height: 50vh;
+  height: calc(100vh - 180px);
   position: sticky;
   width: 50%;
   top: var(--transition-padding);

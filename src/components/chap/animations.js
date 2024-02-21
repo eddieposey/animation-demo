@@ -94,37 +94,37 @@ const typewriter = (lines) => {
 }
 
 const simpleTimeline = (lines) => {
-  const tw = typewriter(lines).delay(0.5)
+  const typing = typewriter(lines).delay(0.5)
   const space = gsap.timeline().delay(2)
-  return gsap.timeline(options).add(tw).add(space)
+  return gsap.timeline(options).add(typing).add(space)
 }
 
 const enhancedTimeline = (lines, stage, type, mobile) => {
-  const tw = typewriter(lines).duration(2).delay(0.5)
+  const typing = typewriter(lines).duration(2).delay(0.5)
   const fade = scrollFade(type, true).duration(2)
 
   if(mobile) {
-    return gsap.timeline(options).add(tw).add(fade)
+    return gsap.timeline(options).add(typing).add(fade)
   }
 
   if(!mobile) {
     const scale = scaleBG(stage).duration(2)
-    return gsap.timeline(options).add(tw).add(fade).add(scale)
+    return gsap.timeline(options).add(typing).add(fade).add(scale)
   }
 }
 
 const plusTimeline = (lines, bg, stage, type, mobile) => {
-  const tw = typewriter(lines).duration(2).delay(0.5)
+  const typing = typewriter(lines).duration(2).delay(0.5)
   const fade = scrollFade(bg, true).duration(2)
   const fade2 = scrollFade(type, true).duration(2)
 
   if(mobile) {
-    return gsap.timeline(options).add(tw).add(fade).add(fade2)
+    return gsap.timeline(options).add(typing).add(fade).add(fade2)
   }
 
   if(!mobile) {
     const scale = scaleBG(stage).duration(1)
-    return gsap.timeline(options).add(tw).add(fade).add(fade2).add(scale)
+    return gsap.timeline(options).add(typing).add(fade).add(fade2).add(scale)
   }
 }
 
