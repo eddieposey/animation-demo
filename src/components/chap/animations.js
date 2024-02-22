@@ -35,7 +35,7 @@ const scaleBG = (element) => {
 const shrinkBG = (element, forwards) => {
   const shrinkTimeline = gsap.timeline()
   const start = { height: '100%', left: 0, right: 0, bottom: 0 }
-  const end = { height: '255px', left: railPadding, right: railPadding }
+  const end = { height: '40%', left: railPadding, right: railPadding }
 
   if(forwards) {
     shrinkTimeline.to(element, end)

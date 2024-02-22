@@ -66,7 +66,8 @@ const enhancedInit = () => {
 
     ScrollTrigger.create({
       trigger: element.querySelector(mobiRail),
-      start: 'top 500px',
+      start: 'top 65%',
+      markers: true,
       onEnter: () => {
         shrinkBG(element.querySelector(mobiAnim), true).play()
         triggerFade(element.querySelector(mobiRail), true).play()
@@ -108,7 +109,8 @@ const plusInit = () => {
 
     ScrollTrigger.create({
       trigger: element.querySelector(mobiRail),
-      start: 'top 500px',
+      start: 'top 65%',
+      markers: true,
       onEnter: () => {
         shrinkBG(element.querySelector(mobiAnim), true).play()
         triggerFade(element.querySelector(mobiRail), true).play()
